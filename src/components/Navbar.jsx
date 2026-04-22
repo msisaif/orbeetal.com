@@ -30,10 +30,10 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 z-50">
-          <img src="/logo.webp" alt="Orbeetal Logo" className="w-10 h-10 object-contain" />
-          <span className="font-display font-bold text-2xl tracking-tight text-white">Orbeetal</span>
-        </Link>
+        <a href="/" className="flex items-center gap-2 z-50">
+          <img src="/logo.webp" alt="Orbeetal Logo" className="w-12 h-12 object-contain" />
+          <span className="font-poppins font-semibold text-3xl text-white">Orbeetal</span>
+        </a>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
@@ -61,7 +61,7 @@ export function Navbar() {
 
         {/* Mobile Nav Overlay */}
         <div
-          className={`fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 transition-all duration-300 ${
+          className={`fixed h-screen lg:hidden inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 transition-all duration-300 ${
             isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >

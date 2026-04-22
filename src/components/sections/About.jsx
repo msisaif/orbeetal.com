@@ -18,15 +18,15 @@ export function About() {
             viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
             <p className="text-primary text-sm font-medium uppercase tracking-widest mb-4">About Orbeetal</p>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
               One of the Fastest Ways to <span className="text-gradient">Business Growth</span>
             </h2>
             <p className="text-xl text-white/70 mb-6 font-light leading-relaxed">
               Orbeetal is a forward-thinking software company based in Dhaka, Bangladesh. We specialize in delivering cutting-edge digital solutions — from web and mobile development to AI-powered systems and cybersecurity — helping businesses of all sizes compete and grow in the digital age.
             </p>
-            <p className="text-white/60 leading-relaxed mb-8">
+            {/* <p className="text-white/60 leading-relaxed mb-8">
               Our team of dedicated directors and specialists work collaboratively to bring your vision to life with precision, creativity, and technical excellence.
-            </p>
+            </p> */}
             <ul className="space-y-4">
               {whyChooseUs.map((item) => (
                 <li key={item.title} className="flex items-start gap-3 text-white/80">

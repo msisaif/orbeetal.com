@@ -24,7 +24,7 @@ export const whyChooseUs = [
   },
   {
     title: "End-to-End Service",
-    description: "From strategy and design to development and launch, we handle it all.",
+    description: "From strategy & design to development and launch, we handle it all.",
   },
   // {
   //   title: "Digital Growth Strategy",

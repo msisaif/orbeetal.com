@@ -51,6 +51,7 @@ export default {
                 serif: 'var(--app-font-serif)',
                 mono: 'var(--app-font-mono)',
                 display: 'var(--app-font-display)',
+                poppins: 'var(--app-font-poppins)',
             },
             borderRadius: {
                 sm: 'calc(var(--radius) - 4px)',
