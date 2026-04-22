@@ -1,8 +1,32 @@
 export const clients = [
-  "Ruet Reporters Unity",
-  "Airy International",
-  "Cleanroom AC",
-  "MUNA",
-  "CloudX Academy",
-  "July Heroes",
+  {
+    name: "Ruet Reporters Unity",
+    logo: "/clients/ruet-reporters-unity.webp",
+    url: "https://rru24.com",
+  },
+  {
+    name: "MUNA",
+    logo: "/clients/muna.webp",
+    url: "https://munabooks.com",
+  },
+  {
+    name: "CloudX Academy",
+    logo: "/clients/cloudx.webp",
+    url: "https://cloudx.academy",
+  },
+  {
+    name: "July Heroes",
+    logo: "/clients/july.svg",
+    url: "https://julyheroes.com",
+  },
+  {
+    name: "Cleanroom AC",
+    logo: "/clients/cleanroomac.webp",
+    url: "https://cleanroomac.com",
+  },
+  {
+    name: "Airy International",
+    logo: "/clients/airy.webp",
+    url: "https://airy.com.bd",
+  },
 ];
