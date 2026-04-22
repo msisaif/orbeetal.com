@@ -39,8 +39,19 @@ export function Portfolio() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group relative glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all duration-500"
             >
-              <div className={`h-48 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-grid-pattern opacity-30"></div>
+              <div className={`h-60 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-grid-pattern opacity-75">
+                  {project.preview && (
+                    <img
+                      src={project.preview}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  )}
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050B14] to-transparent"></div>
                 {project.link && (
                   <a
@@ -55,11 +66,11 @@ export function Portfolio() {
                     </div>
                   </a>
                 )}
-                <div className="absolute bottom-4 left-6">
-                  <span className="text-xs font-medium text-primary/80 uppercase tracking-widest bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+                {/* <div className="absolute bottom-4 left-6">
+                  <span className="text-xs font-medium text-white/75 uppercase tracking-widest bg-primary/25 border border-primary/20 px-3 py-1 rounded-full">
                     {project.category}
                   </span>
-                </div>
+                </div> */}
               </div>
               <div className="p-7">
                 <h3 className="text-xl font-display font-semibold mb-3 text-white group-hover:text-primary transition-colors duration-300">
