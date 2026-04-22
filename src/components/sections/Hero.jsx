@@ -13,11 +13,11 @@ export function Hero() {
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-30">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center py-8 lg:py-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs md:text-sm font-medium mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             Systems Online. Ready for Launch.
@@ -26,7 +26,7 @@ export function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight mb-8"
+            className="text-4xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight mb-8"
           >
             Elevate Above the <br className="hidden md:block" />
             <span className="text-gradient">Competition.</span>
@@ -68,7 +68,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
             className="inline-flex items-center gap-3 px-5 py-3 rounded-xl border border-amber-400/30 bg-amber-400/10 backdrop-blur-sm"
           >
-            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-amber-400/20 border border-amber-400/40">
+            <div className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-amber-400/20 border border-amber-400/40">
               <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>

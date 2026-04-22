@@ -43,7 +43,7 @@ export function Navbar() {
                 key={link.name}
                 href={`#${link.href}`}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-lg lg:text-xl font-medium text-white/70 hover:text-white transition-colors"
+                className="text-lg font-display font-thin text-white/70 hover:text-white transition-colors"
               >
                 {link.name}
               </a>
