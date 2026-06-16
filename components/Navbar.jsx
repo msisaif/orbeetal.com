@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { TopBanner } from "@/components/TopBanner";
+import { activeHero } from "@/data/siteConfig.js";
 
 const navLinks = [
   { name: "Services",     route: "/services" },
@@ -15,9 +16,13 @@ const navLinks = [
   { name: "Team",         route: "/team" },
   { name: "About",        route: "/about" },
   { name: "Contact",      route: "/contact" },
-  { name: "Idea Contest", route: "/idea-contest", highlight: true },
-  { name: "Career Fair",  route: "/cv-submit",    highlight: true },
 ];
+
+if (activeHero === "idea-contest") {
+  navLinks.push({ name: "Idea Contest", route: "/idea-contest", highlight: true });
+} else if (activeHero === "cv-submit") {
+  navLinks.push({ name: "Career Fair", route: "/cv-submit", highlight: true });
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

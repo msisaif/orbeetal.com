@@ -8,14 +8,14 @@ export function ClientsBar() {
         <p className="text-center text-sm font-medium text-white/40 mb-8 uppercase tracking-widest">
           Trusted by Our Happy Clients
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-8">
+        <div className="flex flex-wrap justify-between items-center gap-4">
           {clients.map((client) => (
             <a
               key={client.name}
               href={client.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-36 md:w-48 flex flex-col items-center py-2 rounded-xl border border-white/10 bg-white text-sm font-medium hover:border-primary/30 hover:text-white/80 transition-all duration-300 cursor-pointer hover:scale-105"
+              className="w-36 md:w-44 flex flex-col items-center py-2 rounded-xl border border-white/10 bg-white text-sm font-medium hover:border-primary/30 hover:text-white/80 transition-all duration-300 cursor-pointer hover:scale-105"
             >
               <div className="relative h-16 w-full">
                 <Image
