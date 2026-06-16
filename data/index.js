@@ -7,3 +7,12 @@ export { clients } from "./clients.js";
 export { processSteps } from "./process.js";
 export { stats, whyChooseUs } from "./about.js";
 export { contactInfo } from "./contact.js";
+export {
+  ideaContestMeta,
+  ideaContestPageMeta,
+  ideaContestStats,
+  ideaContestInfoCards,
+  ideaContestSubmitItems,
+  ideaContestCriteria,
+} from "./ideaContest.js";
+export { activeHero } from "./siteConfig.js";
