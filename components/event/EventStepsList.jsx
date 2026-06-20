@@ -60,7 +60,7 @@ export function EventStepsList({ tagline, title, titleHighlight, items, accent =
                     {Icon && <Icon className={cn("w-6 h-6", styles.icon)} />}
                   </div>
                   <h3 className="text-xl font-display font-semibold text-white mb-3">{item.title}</h3>
-                  <p className="text-white/65 leading-relaxed">{item.description}</p>
+                  <p className="text-body-muted leading-relaxed">{item.description}</p>
                 </GlassCard>
               </MotionFadeIn>
             );

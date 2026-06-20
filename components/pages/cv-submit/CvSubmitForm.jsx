@@ -1,19 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm, useWatch, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { m } from "framer-motion";
 import { Upload, Send, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { FieldLabel } from "@/components/ui/field-label";
 import { FieldError } from "@/components/ui/field-error";
 import { useToast } from "@/hooks/use-toast";
+import { getSafeMotionProps } from "@/hooks/useSafeMotion";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "framer-motion";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -45,17 +53,18 @@ const NOTE_SUGGESTIONS = [
   "Cybersecurity",
 ];
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5, delay },
-});
-
 export function CvSubmitForm({ ruetDepartments }) {
+  const reduced = useReducedMotion();
+  const fadeUp = (delay = 0) =>
+    getSafeMotionProps(reduced, {
+      initial: { opacity: 0, y: 20 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true },
+      transition: { duration: 0.5, delay },
+    });
+
   const universityDepartments = { ruet: ruetDepartments };
   const { toast } = useToast();
-  const [selectedUniversity, setSelectedUniversity] = useState("");
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -68,6 +77,7 @@ export function CvSubmitForm({ ruetDepartments }) {
   } = useForm({ resolver: zodResolver(schema) });
 
   const noteValue = useWatch({ control, name: "note" }) || "";
+  const selectedUniversity = useWatch({ control, name: "university" }) || "";
 
   function appendSuggestion(suggestion) {
     const current = noteValue.trim();
@@ -132,49 +142,71 @@ export function CvSubmitForm({ ruetDepartments }) {
         <m.form
           {...fadeUp(0.1)}
           onSubmit={handleSubmit(onSubmit)}
-          className="glass-panel rounded-2xl p-6 md:p-8 space-y-5"
+          className="glass-panel rounded-panel p-6 md:p-8 space-y-5"
           noValidate
         >
           <div>
             <FieldLabel htmlFor="cv-university" required>University</FieldLabel>
-            <Select
-              id="cv-university"
-              aria-invalid={!!errors.university}
-              aria-describedby={errors.university ? "cv-university-error" : undefined}
-              {...register("university")}
-              onChange={(e) => {
-                register("university").onChange(e);
-                setSelectedUniversity(e.target.value);
-                setValue("department_code", "");
-              }}
-            >
-              <option value="">Select university</option>
-              {UNIVERSITIES.map((u) => (
-                <option key={u.value} value={u.value}>
-                  {u.label}
-                </option>
-              ))}
-            </Select>
+            <Controller
+              name="university"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value || undefined}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    setValue("department_code", "", { shouldValidate: false });
+                  }}
+                >
+                  <SelectTrigger
+                    id="cv-university"
+                    aria-invalid={!!errors.university}
+                    aria-describedby={errors.university ? "cv-university-error" : undefined}
+                  >
+                    <SelectValue placeholder="Select university" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {UNIVERSITIES.map((u) => (
+                      <SelectItem key={u.value} value={u.value}>
+                        {u.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
             <FieldError id="cv-university-error" message={errors.university?.message} />
           </div>
 
           <div>
             <FieldLabel htmlFor="cv-department" required>Department</FieldLabel>
-            <Select
-              id="cv-department"
-              aria-invalid={!!errors.department_code}
-              aria-describedby={errors.department_code ? "cv-department-error" : undefined}
-              className={cn(!selectedUniversity && "opacity-50 cursor-not-allowed")}
-              disabled={!selectedUniversity}
-              {...register("department_code")}
-            >
-              <option value="">Select department</option>
-              {(universityDepartments[selectedUniversity] || []).map((d) => (
-                <option key={d.code} value={d.code}>
-                  {d.shortName} — {d.name}
-                </option>
-              ))}
-            </Select>
+            <Controller
+              name="department_code"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value || undefined}
+                  onValueChange={field.onChange}
+                  disabled={!selectedUniversity}
+                >
+                  <SelectTrigger
+                    id="cv-department"
+                    className={cn(!selectedUniversity && "opacity-50 cursor-not-allowed")}
+                    aria-invalid={!!errors.department_code}
+                    aria-describedby={errors.department_code ? "cv-department-error" : undefined}
+                  >
+                    <SelectValue placeholder="Select department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {(universityDepartments[selectedUniversity] || []).map((d) => (
+                      <SelectItem key={d.code} value={d.code}>
+                        {d.shortName} — {d.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
             <FieldError id="cv-department-error" message={errors.department_code?.message} />
           </div>
 

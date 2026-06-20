@@ -26,7 +26,7 @@ export function EventCriteriaList({ tagline, title, titleHighlight, items }) {
                 <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-display font-semibold text-white mb-1">{item.label}</p>
-                  <p className="text-sm text-white/60">{item.desc}</p>
+                  <p className="text-sm text-body-muted">{item.desc}</p>
                 </div>
               </GlassCard>
             </MotionFadeIn>

@@ -2,7 +2,7 @@
 // Controls nav links and dedicated page content (/idea-contest, /cv-submit)
 export const features = {
   ideaContest: true,
-  cvSubmit: false,
+  cvSubmit: true,
 };
 
 // ─── Homepage hero ────────────────────────────────────────────────────────────

@@ -80,6 +80,25 @@ hooks/            Custom React hooks
 e2e/              Playwright smoke tests
 ```
 
+## Design Tokens & UI Standards
+
+Design tokens live in [`app/globals.css`](app/globals.css). Prefer these utilities over ad-hoc opacity classes:
+
+| Utility | Purpose |
+|---------|---------|
+| `.text-body-muted` | Secondary body text (WCAG-safe `muted-foreground`) |
+| `.text-body-subtle` | De-emphasized text (copyright, back links) |
+| `.text-hero-display` / `.text-hero-page` / `.text-hero-event` / `.text-profile-name` | Responsive `clamp()` hero typography |
+| `.rounded-card` / `.rounded-panel` | Consistent card/panel radius (`--radius-card`, `--radius-panel`) |
+| `.hero-top-spacing` / `.page-hero-top-spacing` | Navbar-aware hero padding; `.has-top-banner` adjusts when TopBanner is active |
+| `.glass-panel` | Frosted surface for cards and form panels |
+
+**Component conventions:**
+- CTAs: `<Button asChild><Link … /></Button>` — never nest `<Link><Button>`
+- Forms: Radix `Select` via `Controller` (see `CvSubmitForm`); inputs use `focus-visible:ring-ring`
+- Motion: `getSafeMotionProps()` from `hooks/useSafeMotion.js` for scroll animations
+- Layout: all pages use `PageLayout` (skip link, nav, footer shell)
+
 ## Content Layer
 
 UI components never import `@/data` directly. They call `lib/content/*` getters (e.g. `getServices()`, `getSiteConfig()`), which delegate to an adapter:

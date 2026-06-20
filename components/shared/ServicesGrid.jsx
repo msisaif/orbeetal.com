@@ -20,7 +20,7 @@ export function ServicesGrid({ services }) {
                   {Icon && <Icon className="w-6 h-6 text-primary" />}
                 </div>
                 <h3 className="text-2xl font-display font-semibold mb-3">{service.title}</h3>
-                <p className="text-white/65 leading-relaxed mb-6">{service.description}</p>
+                <p className="text-body-muted leading-relaxed mb-6">{service.description}</p>
                 <div className="relative w-full h-40 rounded-lg overflow-hidden border border-white/10 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
                   <Image
                     src={service.image}

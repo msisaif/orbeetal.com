@@ -2,6 +2,7 @@
 
 import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useSafeMotion } from "@/hooks/useSafeMotion";
 
 export function SectionHeader({
   tagline,
@@ -17,15 +18,21 @@ export function SectionHeader({
   const TitleWrapper = animated ? m.h2 : "h2";
   const DescWrapper = animated ? m.p : "p";
 
-  const taglineProps = animated
-    ? { initial: { opacity: 0, y: 10 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } }
-    : {};
-  const titleProps = animated
-    ? { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, delay: 0.1 } }
-    : {};
-  const descProps = animated
-    ? { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, delay: 0.2 } }
-    : {};
+  const taglineProps = useSafeMotion(
+    animated
+      ? { initial: { opacity: 0, y: 10 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } }
+      : {}
+  );
+  const titleProps = useSafeMotion(
+    animated
+      ? { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, delay: 0.1 } }
+      : {}
+  );
+  const descProps = useSafeMotion(
+    animated
+      ? { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6, delay: 0.2 } }
+      : {}
+  );
 
   return (
     <div className={cn(isCenter ? "text-center max-w-3xl mx-auto" : "max-w-3xl", className)}>
@@ -47,7 +54,7 @@ export function SectionHeader({
         </TitleWrapper>
       )}
       {description && (
-        <DescWrapper {...descProps} className="text-xl text-white/60">
+        <DescWrapper {...descProps} className="text-xl text-body-muted">
           {description}
         </DescWrapper>
       )}

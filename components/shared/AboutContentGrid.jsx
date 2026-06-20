@@ -12,7 +12,7 @@ export function AboutContentGrid({ paragraphs = [], showCta = false, stats, whyC
         {paragraphs.map((text, i) => (
           <p
             key={i}
-            className={`text-xl text-white/70 font-light leading-relaxed ${
+            className={`text-xl text-body-muted font-light leading-relaxed ${
               i < paragraphs.length - 1 ? "mb-8" : showCta ? "mb-10" : "mb-6"
             }`}
           >
@@ -30,11 +30,11 @@ export function AboutContentGrid({ paragraphs = [], showCta = false, stats, whyC
           ))}
         </ul>
         {showCta && (
-          <Link href="/contact">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground border-none h-12 px-8">
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground border-none h-12 px-8">
+            <Link href="/contact">
               Work With Us <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         )}
       </MotionFadeIn>
 

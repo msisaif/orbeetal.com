@@ -6,8 +6,17 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { resolveIcon } from "@/lib/icons";
+import { getSafeMotionProps, useSafeMotion } from "@/hooks/useSafeMotion";
+import { useReducedMotion } from "framer-motion";
 
 export function IdeaContestContent({ meta, stats }) {
+  const reduced = useReducedMotion();
+  const taglineMotion = useSafeMotion({ initial: { opacity: 0, y: 10 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } });
+  const titleMotion = useSafeMotion({ initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.7, delay: 0.1 } });
+  const subtitleMotion = useSafeMotion({ initial: { opacity: 0, y: 10 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5, delay: 0.15 } });
+  const descMotion = useSafeMotion({ initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.7, delay: 0.2 } });
+  const ctaMotion = useSafeMotion({ initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.7, delay: 0.3 } });
+
   return (
     <section
       id="idea-contest"
@@ -21,60 +30,30 @@ export function IdeaContestContent({ meta, stats }) {
       <div className="relative z-10 container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <m.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4"
-            >
+            <m.p {...taglineMotion} className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-4">
               {meta.organizer} Presents
             </m.p>
 
-            <m.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl md:text-6xl font-display font-bold mb-3 leading-tight"
-            >
+            <m.h2 {...titleMotion} className="text-5xl md:text-6xl font-display font-bold mb-3 leading-tight">
               <span className="text-amber-400">Idea</span>{" "}
               <span className="text-white">Contest</span>
             </m.h2>
 
-            <m.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-amber-300 text-sm font-medium uppercase tracking-widest mb-6"
-            >
+            <m.p {...subtitleMotion} className="text-amber-300 text-sm font-medium uppercase tracking-widest mb-6">
               Ideas Today, Impact Tomorrow
             </m.p>
 
-            <m.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/60 text-lg leading-relaxed mb-10"
-            >
+            <m.p {...descMotion} className="text-body-muted text-lg leading-relaxed mb-10">
               Showcase your innovative ideas and creative concepts that can solve
               real-world problems and build a better future. Presented at the{" "}
               {meta.venue}.
             </m.p>
 
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
-            >
+            <m.div {...ctaMotion} className="flex flex-wrap gap-4">
               <Button
                 asChild
                 size="lg"
-                className="bg-amber-500 hover:bg-amber-400 text-black font-semibold border-none rounded-sm h-14 px-8 text-base shadow-[0_0_40px_-10px_rgba(245,158,11,0.6)]"
+                className="bg-amber-500 hover:bg-amber-400 text-black font-semibold border-none h-14 px-8 text-base shadow-[0_0_40px_-10px_rgba(245,158,11,0.6)]"
               >
                 <Link href="/idea-contest">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
@@ -84,7 +63,7 @@ export function IdeaContestContent({ meta, stats }) {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-amber-400/30 hover:bg-amber-400/5 text-white rounded-sm h-14 px-8 text-base"
+                className="border-amber-400/30 hover:bg-amber-400/5 text-white h-14 px-8 text-base"
               >
                 <a
                   href={meta.submitFormUrl}
@@ -104,10 +83,12 @@ export function IdeaContestContent({ meta, stats }) {
               return (
                 <m.div
                   key={stat.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
+                  {...getSafeMotionProps(reduced, {
+                    initial: { opacity: 0, x: 20 },
+                    whileInView: { opacity: 1, x: 0 },
+                    viewport: { once: true },
+                    transition: { duration: 0.6, delay: 0.1 + i * 0.1 },
+                  })}
                   className={cn(
                     "glass-panel rounded-2xl p-6 flex items-center gap-5 border transition-all duration-300",
                     stat.amber
@@ -131,7 +112,7 @@ export function IdeaContestContent({ meta, stats }) {
                     />
                   </div>
                   <div>
-                    <p className="text-xs text-white/55 uppercase tracking-wider mb-1">
+                    <p className="text-xs text-body-subtle uppercase tracking-wider mb-1">
                       {stat.label}
                     </p>
                     <p

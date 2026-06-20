@@ -23,11 +23,11 @@ export function ProcessContent({ processSteps }) {
                 <div className="text-8xl font-display font-black text-white/5 absolute -top-10 -left-4 select-none pointer-events-none">
                   {step.num}
                 </div>
-                <div className="w-16 h-16 rounded-full bg-[#050B14] border border-primary/30 flex items-center justify-center mb-8 relative z-10 shadow-[0_0_30px_-5px_rgba(0,112,243,0.3)]">
+                <div className="w-16 h-16 rounded-full bg-surface-deep border border-primary/30 flex items-center justify-center mb-8 relative z-10 shadow-[0_0_30px_-5px_rgba(0,112,243,0.3)]">
                   <span className="text-xl font-bold text-primary">{step.num}</span>
                 </div>
                 <h3 className="text-2xl font-display font-semibold mb-4">{step.title}</h3>
-                <p className="text-white/60 leading-relaxed">{step.description}</p>
+                <p className="text-body-muted leading-relaxed">{step.description}</p>
               </MotionFadeIn>
             ))}
           </div>

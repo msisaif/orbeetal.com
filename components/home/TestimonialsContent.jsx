@@ -21,7 +21,7 @@ export function TestimonialsContent({ testimonials }) {
             <MotionFadeIn key={t.name} y={24} delay={i * 0.12}>
               <GlassCard className="rounded-2xl p-8 border border-white/5 hover:border-primary/20 transition-all duration-500 flex flex-col h-full">
                 <Quote className="w-8 h-8 text-primary/40 mb-5 flex-shrink-0" />
-                <p className="text-white/70 leading-relaxed mb-8 flex-1 italic">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-body-muted leading-relaxed mb-8 flex-1 italic">&ldquo;{t.quote}&rdquo;</p>
                 <div className="flex items-center gap-4 pt-5 border-t border-white/5">
                   <div
                     className={`w-12 h-12 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center text-white text-sm font-display font-bold flex-shrink-0`}
@@ -30,7 +30,7 @@ export function TestimonialsContent({ testimonials }) {
                   </div>
                   <div>
                     <div className="text-white font-semibold text-sm">{t.name}</div>
-                    <div className="text-white/65 text-xs mt-0.5">{t.role}</div>
+                    <div className="text-body-muted text-xs mt-0.5">{t.role}</div>
                   </div>
                 </div>
               </GlassCard>

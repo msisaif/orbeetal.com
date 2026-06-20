@@ -17,9 +17,9 @@ export function EventInfoCardGrid({ cards }) {
                   <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4">
                     {Icon && <Icon className="w-6 h-6 text-primary" />}
                   </div>
-                  <p className="text-xs text-white/65 uppercase tracking-wider mb-2">{card.label}</p>
+                  <p className="text-xs text-body-muted uppercase tracking-wider mb-2">{card.label}</p>
                   <p className="text-xl font-display font-bold text-white mb-1">{card.value}</p>
-                  <p className="text-sm text-white/60">{card.sub}</p>
+                  <p className="text-sm text-body-muted">{card.sub}</p>
                 </GlassCard>
               </MotionFadeIn>
             );

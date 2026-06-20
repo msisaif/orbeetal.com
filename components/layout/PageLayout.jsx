@@ -7,14 +7,16 @@ import {
   getIdeaContestBannerContent,
   getCvSubmitBannerContent,
 } from "@/lib/content/siteConfig.js";
+import { getContactInfo } from "@/lib/content/contact.js";
 import { getEnabledEventNavLinks, resolveTopBanner } from "@/lib/siteFeatures.js";
 
 export async function PageLayout({ children, className }) {
-  const [navLinks, siteConfig, ideaContestBanner, cvSubmitBanner] = await Promise.all([
+  const [navLinks, siteConfig, ideaContestBanner, cvSubmitBanner, contactInfo] = await Promise.all([
     getNavLinks(),
     getSiteConfig(),
     getIdeaContestBannerContent(),
     getCvSubmitBannerContent(),
+    getContactInfo(),
   ]);
 
   const eventLinks = getEnabledEventNavLinks(siteConfig);
@@ -27,6 +29,7 @@ export async function PageLayout({ children, className }) {
     <div
       className={cn(
         "min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white",
+        banner && "has-top-banner",
         className
       )}
     >
@@ -38,7 +41,7 @@ export async function PageLayout({ children, className }) {
       </a>
       <Navbar navLinks={navLinks} eventLinks={eventLinks} banner={banner} />
       <main id="main-content">{children}</main>
-      <Footer navLinks={navLinks} />
+      <Footer navLinks={navLinks} contactInfo={contactInfo} />
     </div>
   );
 }

@@ -26,7 +26,7 @@ export function DepartmentsGrid({ departments }) {
                   {Icon && <Icon className="w-7 h-7" />}
                 </div>
                 <h3 className="text-xl font-display font-semibold mb-3 text-white">{dept.title}</h3>
-                <p className="text-white/65 text-sm leading-relaxed">{dept.description}</p>
+                <p className="text-body-muted text-sm leading-relaxed">{dept.description}</p>
               </div>
             </GlassCard>
           </MotionFadeIn>

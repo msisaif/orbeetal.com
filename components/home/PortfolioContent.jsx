@@ -33,14 +33,14 @@ export function PortfolioContent({ projects }) {
                       />
                     )}
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050B14] to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-surface-deep to-transparent" />
                   {project.link && (
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open ${project.title} in new tab`}
-                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center hover:bg-primary/40 transition-colors">
@@ -53,12 +53,12 @@ export function PortfolioContent({ projects }) {
                   <h3 className="text-xl font-display font-semibold mb-3 text-white group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-white/65 text-sm leading-relaxed mb-5">{project.description}</p>
+                  <p className="text-body-muted text-sm leading-relaxed mb-5">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs text-white/60 bg-white/5 border border-white/10 px-3 py-1 rounded-full"
+                        className="text-xs text-body-muted bg-white/5 border border-white/10 px-3 py-1 rounded-full"
                       >
                         {tag}
                       </span>

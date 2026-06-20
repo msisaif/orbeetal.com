@@ -2,10 +2,27 @@
 
 import { m } from "framer-motion";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { useSafeMotion } from "@/hooks/useSafeMotion";
 
 export function PageHero({ tagline, title, titleHighlight, description, breadcrumb }) {
+  const taglineMotion = useSafeMotion({
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 },
+  });
+  const titleMotion = useSafeMotion({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay: 0.1 },
+  });
+  const descMotion = useSafeMotion({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay: 0.2 },
+  });
+
   return (
-    <section className="relative flex items-end pt-40 pb-20 overflow-hidden border-b border-white/5">
+    <section className="relative flex items-end page-hero-top-spacing pb-20 overflow-hidden border-b border-white/5">
       <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
@@ -15,28 +32,22 @@ export function PageHero({ tagline, title, titleHighlight, description, breadcru
 
         <div className="max-w-4xl">
           <m.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            {...taglineMotion}
             className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
           >
             {tagline}
           </m.p>
           <m.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-[1.05] tracking-tight mb-6"
+            {...titleMotion}
+            className="text-hero-page font-display font-bold tracking-tight mb-6"
           >
             {title}{" "}
             {titleHighlight && <span className="text-gradient">{titleHighlight}</span>}
           </m.h1>
           {description && (
             <m.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-white/65 max-w-2xl leading-relaxed"
+              {...descMotion}
+              className="text-xl text-body-muted max-w-2xl leading-relaxed"
             >
               {description}
             </m.p>

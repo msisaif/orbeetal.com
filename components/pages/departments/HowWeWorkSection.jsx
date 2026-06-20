@@ -5,6 +5,8 @@ import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/common/SectionHeader";
+import { getSafeMotionProps } from "@/hooks/useSafeMotion";
+import { useReducedMotion } from "framer-motion";
 
 const howWeWork = [
   {
@@ -22,6 +24,8 @@ const howWeWork = [
 ];
 
 export function HowWeWorkSection() {
+  const reduced = useReducedMotion();
+
   return (
     <section className="py-20 md:py-28 border-t border-white/5 relative z-20">
       <div className="absolute inset-0 bg-white/[0.015]" />
@@ -38,25 +42,29 @@ export function HowWeWorkSection() {
           {howWeWork.map((item, i) => (
             <m.div
               key={item.title}
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
+              {...getSafeMotionProps(reduced, {
+                initial: { opacity: 0, y: 24 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true },
+                transition: { duration: 0.5, delay: i * 0.15 },
+              })}
               className="glass-panel p-8 rounded-2xl border border-white/5 hover:border-primary/20 transition-all duration-500"
             >
               <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-5">
                 <span className="text-primary font-bold text-sm">0{i + 1}</span>
               </div>
               <h3 className="text-xl font-display font-semibold mb-3">{item.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+              <p className="text-body-muted text-sm leading-relaxed">{item.description}</p>
             </m.div>
           ))}
         </div>
 
         <div className="text-center">
-          <Link href="/contact">
-            <Button size="lg" className="h-14 px-10 bg-primary hover:bg-primary/90 text-white border-none shadow-[0_0_40px_-10px_rgba(0,112,243,0.5)]">
+          <Button asChild size="lg" className="h-14 px-10 bg-primary hover:bg-primary/90 text-white border-none shadow-[0_0_40px_-10px_rgba(0,112,243,0.5)]">
+            <Link href="/contact">
               Work With Our Team <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -46,6 +46,14 @@ test("team member page renders", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Md\. Saiful Islam/i })).toBeVisible();
 });
 
+test("404 page renders with site layout", async ({ page }) => {
+  await page.goto("/this-page-does-not-exist");
+  await expect(page.getByRole("heading", { name: /Page Not Found/i })).toBeVisible();
+  await expect(page.getByRole("navigation").getByRole("link", { name: /Orbeetal Logo/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Back to Home/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Contact Us/i })).toBeVisible();
+});
+
 test("skip link is focusable", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("Tab");

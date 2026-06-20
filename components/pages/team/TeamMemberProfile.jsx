@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { SocialLinks } from "@/components/common/SocialLinks";
 
@@ -18,13 +19,13 @@ export function TeamMemberProfile({ member }) {
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col flex-1">
           <div className="pt-40">
-            <nav className="flex items-center gap-2 text-sm text-white/30">
-              <Link href="/" className="hover:text-white/60 transition-colors">Home</Link>
-              <span>›</span>
-              <Link href="/team" className="hover:text-white/60 transition-colors">Team</Link>
-              <span>›</span>
-              <span className="text-white/60">{member.name}</span>
-            </nav>
+            <Breadcrumb
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Team", href: "/team" },
+                { label: member.name },
+              ]}
+            />
           </div>
 
           <div className="relative flex-1 flex flex-col justify-end pb-14 pt-10">
@@ -39,7 +40,7 @@ export function TeamMemberProfile({ member }) {
               </span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-display font-bold leading-[0.92] tracking-tight mb-10">
+            <h1 className="text-profile-name font-display font-bold text-balance tracking-tight mb-10">
               {firstPart}
               <br />
               <span className="text-gradient">{lastName}</span>
@@ -47,7 +48,7 @@ export function TeamMemberProfile({ member }) {
 
             <div className="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-16 pt-8 border-t border-white/5">
               {member.quote && (
-                <p className="text-base text-white/35 italic font-light leading-relaxed max-w-xl">
+                <p className="text-base text-body-subtle italic font-light leading-relaxed max-w-xl">
                   &ldquo;{member.quote}&rdquo;
                 </p>
               )}
@@ -60,13 +61,13 @@ export function TeamMemberProfile({ member }) {
       {member.stats?.length > 0 && (
         <div className="border-b border-white/5 bg-white/2">
           <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-3 divide-x divide-white/5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x divide-white/5">
               {member.stats.map((stat) => (
-                <div key={stat.label} className="py-8 px-6 text-center">
+                <div key={stat.label} className="py-8 px-4 sm:px-6 text-center border-b border-white/5 sm:border-b-0 last:border-b-0">
                   <div className="text-3xl md:text-4xl font-display font-bold text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-white/55 uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-xs text-body-subtle uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -79,7 +80,7 @@ export function TeamMemberProfile({ member }) {
           <div className="max-w-3xl mx-auto space-y-20">
             <div>
               <SectionLabel>Profile</SectionLabel>
-              <p className="text-xl text-white/65 leading-relaxed">{member.bio}</p>
+              <p className="text-xl text-body-muted leading-relaxed">{member.bio}</p>
             </div>
 
             <div>
@@ -106,7 +107,7 @@ export function TeamMemberProfile({ member }) {
                       <span className="text-5xl font-display font-bold text-white/5 group-hover:text-primary/15 transition-colors leading-none shrink-0 w-14 text-right select-none">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <p className="text-white/65 leading-relaxed pt-2 flex-1">{h}</p>
+                      <p className="text-body-muted leading-relaxed pt-2 flex-1">{h}</p>
                     </div>
                   ))}
                 </div>
@@ -116,7 +117,7 @@ export function TeamMemberProfile({ member }) {
             <div>
               <SectionLabel>Background</SectionLabel>
               <div className="glass-panel rounded-2xl p-8 border border-white/8">
-                <p className="text-white/60 leading-relaxed">
+                <p className="text-body-muted leading-relaxed">
                   As a founding Director at Orbeetal, {firstName} plays a pivotal role in shaping
                   the company&apos;s vision and delivering world-class technology solutions. Orbeetal is a
                   forward-thinking software company based in Dhaka, Bangladesh, committed to engineering
@@ -127,7 +128,7 @@ export function TeamMemberProfile({ member }) {
 
             <Link
               href="/team"
-              className="inline-flex items-center gap-2 text-white/30 hover:text-primary transition-colors text-sm group"
+              className="inline-flex items-center gap-2 text-body-subtle hover:text-primary transition-colors text-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to Team

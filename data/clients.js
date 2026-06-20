@@ -4,5 +4,5 @@ export const clients = [
   { name: "Cleanroom AC",         logo: "/clients/cleanroomac.webp",           url: "https://cleanroomac.com" },
   { name: "MUNA",                 logo: "/clients/muna.webp",                  url: "https://munabooks.com" },
   { name: "CloudX Academy",       logo: "/clients/cloudx.webp",               url: "https://cloudx.academy" },
-  { name: "July Heroes",          logo: "/clients/july.svg",                   url: "https://julyheroes.com" },
+  // { name: "July Heroes",          logo: "/clients/july.svg",                   url: "https://julyheroes.com" },
 ];

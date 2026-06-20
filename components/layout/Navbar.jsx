@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,13 @@ import { TopBanner } from "@/components/layout/TopBanner";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+function isLinkActive(pathname, route) {
+  if (route === "/") return pathname === "/";
+  return pathname === route || pathname.startsWith(`${route}/`);
+}
+
 export function Navbar({ navLinks, eventLinks, banner }) {
+  const pathname = usePathname();
   const allLinks = [
     ...navLinks,
     ...eventLinks.map((link) => ({ ...link, highlight: true })),
@@ -25,6 +32,16 @@ export function Navbar({ navLinks, eventLinks, banner }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -76,26 +93,32 @@ export function Navbar({ navLinks, eventLinks, banner }) {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
           <div className="flex items-center gap-6">
-            {allLinks.map((link) => (
+            {allLinks.map((link) => {
+              const active = isLinkActive(pathname, link.route);
+              return (
               <Link
                 key={link.name}
                 href={link.route}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "text-lg font-display font-light transition-colors",
+                  "text-lg font-display font-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm",
                   link.highlight
-                    ? "text-amber-400 hover:text-amber-300"
-                    : "text-white/70 hover:text-white"
+                    ? active
+                      ? "text-amber-300 border-b-2 border-amber-400 pb-0.5"
+                      : "text-amber-400 hover:text-amber-300"
+                    : active
+                      ? "text-white border-b-2 border-primary pb-0.5"
+                      : "text-body-muted hover:text-white"
                 )}
               >
                 {link.name}
               </Link>
-            ))}
+              );
+            })}
           </div>
-          <Link href="/contact">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">
-              Get Started
-            </Button>
-          </Link>
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground border-none">
+            <Link href="/contact">Get Started</Link>
+          </Button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -121,29 +144,38 @@ export function Navbar({ navLinks, eventLinks, banner }) {
             isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
-          {allLinks.map((link) => (
+          {allLinks.map((link) => {
+            const active = isLinkActive(pathname, link.route);
+            return (
             <Link
               key={link.name}
               href={link.route}
               onClick={() => setIsMobileMenuOpen(false)}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "text-2xl font-display font-medium transition-colors",
+                "text-2xl font-display font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:rounded-sm",
                 link.highlight
-                  ? "text-amber-400 hover:text-amber-300"
-                  : "text-white hover:text-primary"
+                  ? active
+                    ? "text-amber-300"
+                    : "text-amber-400 hover:text-amber-300"
+                  : active
+                    ? "text-primary"
+                    : "text-white hover:text-primary"
               )}
             >
               {link.name}
             </Link>
-          ))}
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground border-none mt-4"
-            >
+            );
+          })}
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground border-none mt-4"
+          >
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
               Get Started
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </nav>

@@ -33,7 +33,7 @@ export function TeamGrid({ teamMembers }) {
               <p className="text-primary text-sm font-medium mb-5">{member.role}</p>
               <Link
                 href={`/team/${member.slug}`}
-                className="block w-full text-sm text-white/60 border border-white/10 hover:border-primary/30 hover:text-primary transition-all duration-300 rounded-lg py-2 px-4 group-hover:bg-primary/5 text-center"
+                className="block w-full text-sm text-body-muted border border-white/10 hover:border-primary/30 hover:text-primary transition-all duration-300 rounded-lg py-2 px-4 group-hover:bg-primary/5 text-center"
               >
                 View Profile
               </Link>
