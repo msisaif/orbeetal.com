@@ -1,0 +1,10 @@
+# Performance baseline (pre-optimization) — 2026-06-20
+# Next.js 16.2.9 Turbopack build — route First Load JS not printed in build output
+# Measured via .next/static total size before changes
+
+baseline_static_total: 2.3M
+baseline_chunk_count: 26
+
+post_static_total: 2.4M
+post_chunk_count: 31
+note: More chunks = homepage below-fold code splitting; Toaster scoped to /cv-submit; LazyMotion + domAnimation

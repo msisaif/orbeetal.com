@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -17,21 +17,21 @@ export function CallToAction({
       <div className="absolute inset-0 bg-primary/5" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
       <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-display font-bold mb-6"
         >
           {title} <span className="text-gradient">{titleHighlight}</span>
-        </motion.h2>
-        <motion.p
+        </m.h2>
+        <m.p
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
           className="text-xl text-white/60 mb-10 max-w-xl mx-auto"
         >
           {description}
-        </motion.p>
-        <motion.div
+        </m.p>
+        <m.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -48,7 +48,7 @@ export function CallToAction({
               </Button>
             </Link>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

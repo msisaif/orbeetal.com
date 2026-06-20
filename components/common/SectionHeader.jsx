@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function SectionHeader({
@@ -13,9 +13,9 @@ export function SectionHeader({
   className,
 }) {
   const isCenter = align === "center";
-  const Wrapper = animated ? motion.p : "p";
-  const TitleWrapper = animated ? motion.h2 : "h2";
-  const DescWrapper = animated ? motion.p : "p";
+  const Wrapper = animated ? m.p : "p";
+  const TitleWrapper = animated ? m.h2 : "h2";
+  const DescWrapper = animated ? m.p : "p";
 
   const taglineProps = animated
     ? { initial: { opacity: 0, y: 10 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } }

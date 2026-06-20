@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CallToAction } from "@/components/common/CallToAction";
@@ -27,7 +27,7 @@ export function ServicesPageContent({ services, processSteps }) {
         <div className="absolute inset-0 bg-white/[0.015]" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.7 }}
             >
@@ -51,11 +51,11 @@ export function ServicesPageContent({ services, processSteps }) {
                   Start a Project <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-            </motion.div>
+            </m.div>
 
             <div className="space-y-6">
               {processSteps.map((step, i) => (
-                <motion.div
+                <m.div
                   key={step.num}
                   initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -68,7 +68,7 @@ export function ServicesPageContent({ services, processSteps }) {
                     <h3 className="text-xl font-display font-semibold mb-2">{step.title}</h3>
                     <p className="text-white/60 leading-relaxed text-sm">{step.description}</p>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>

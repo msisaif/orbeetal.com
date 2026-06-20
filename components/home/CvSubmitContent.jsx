@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export function CvSubmitContent({ meta, stats }) {
       <div className="relative z-10 container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -29,9 +29,9 @@ export function CvSubmitContent({ meta, stats }) {
               className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
             >
               {meta.organizer} · {meta.edition} Edition
-            </motion.p>
+            </m.p>
 
-            <motion.h2
+            <m.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -40,9 +40,9 @@ export function CvSubmitContent({ meta, stats }) {
             >
               <span className="text-gradient">Career</span>{" "}
               <span className="text-white">Fair</span>
-            </motion.h2>
+            </m.h2>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -50,9 +50,9 @@ export function CvSubmitContent({ meta, stats }) {
               className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-6"
             >
               Your Career Starts Here
-            </motion.p>
+            </m.p>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -63,9 +63,9 @@ export function CvSubmitContent({ meta, stats }) {
               {meta.organizer} {meta.edition} Career Fair.
               Explore internship, part-time, and full-time opportunities
               from leading companies.
-            </motion.p>
+            </m.p>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -97,14 +97,14 @@ export function CvSubmitContent({ meta, stats }) {
                   </a>
                 </Button>
               )}
-            </motion.div>
+            </m.div>
           </div>
 
           <div className="flex flex-col gap-4">
             {stats.map((stat, i) => {
               const Icon = resolveIcon(stat.icon);
               return (
-                <motion.div
+                <m.div
                   key={stat.label}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -145,7 +145,7 @@ export function CvSubmitContent({ meta, stats }) {
                       {stat.value}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

@@ -1,7 +1,12 @@
+import dynamic from "next/dynamic";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { AboutBackground } from "@/components/shared/AboutBackground";
-import { AboutContentGrid } from "@/components/shared/AboutContentGrid";
 import { getAboutContent } from "@/lib/content/about.js";
+
+const AboutContentGrid = dynamic(
+  () => import("@/components/shared/AboutContentGrid").then((m) => m.AboutContentGrid),
+  { ssr: true }
+);
 
 export async function About() {
   const { aboutIntro, stats, whyChooseUs } = await getAboutContent();

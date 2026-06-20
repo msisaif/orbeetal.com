@@ -1,6 +1,11 @@
+import dynamic from "next/dynamic";
 import { SectionHeader } from "@/components/common/SectionHeader";
-import { ContactInfoPanel } from "@/components/shared/ContactInfoPanel";
 import { getContactInfo } from "@/lib/content/contact.js";
+
+const ContactInfoPanel = dynamic(
+  () => import("@/components/shared/ContactInfoPanel").then((m) => m.ContactInfoPanel),
+  { ssr: true }
+);
 
 export async function Contact() {
   const contactInfo = await getContactInfo();

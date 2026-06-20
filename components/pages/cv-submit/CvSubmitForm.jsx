@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Upload, Send, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -119,7 +119,7 @@ export function CvSubmitForm({ ruetDepartments }) {
   return (
     <section id="cv-form" className="py-20 border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12 max-w-2xl">
-        <motion.div {...fadeUp(0)} className="text-center mb-10">
+        <m.div {...fadeUp(0)} className="text-center mb-10">
           <p className="text-primary text-sm font-medium uppercase tracking-widest mb-3">
             Apply Now
           </p>
@@ -127,9 +127,9 @@ export function CvSubmitForm({ ruetDepartments }) {
           <p className="text-foreground/50 mt-3 text-sm">
             Fill in the form below — only PDF files accepted, max 5MB.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.form
+        <m.form
           {...fadeUp(0.1)}
           onSubmit={handleSubmit(onSubmit)}
           className="glass-panel rounded-2xl p-6 md:p-8 space-y-5"
@@ -286,7 +286,7 @@ export function CvSubmitForm({ ruetDepartments }) {
               </>
             )}
           </Button>
-        </motion.form>
+        </m.form>
       </div>
     </section>
   );

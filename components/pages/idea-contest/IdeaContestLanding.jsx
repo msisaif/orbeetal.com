@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { Trophy, Users, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,16 +19,16 @@ export function IdeaContestLanding({ content }) {
         </div>
 
         <div className="relative z-10 container mx-auto px-6 md:px-12 text-center">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-6"
           >
             {meta.organizer} Presents
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -39,18 +39,18 @@ export function IdeaContestLanding({ content }) {
             <h1 className="text-7xl md:text-9xl font-display font-bold leading-none mb-6">
               <span className="text-white">CONTEST</span>
             </h1>
-          </motion.div>
+          </m.div>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-primary text-base md:text-lg font-medium uppercase tracking-widest mb-6"
           >
             Ideas Today, Impact Tomorrow
-          </motion.p>
+          </m.p>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -58,9 +58,9 @@ export function IdeaContestLanding({ content }) {
           >
             Showcase your innovative ideas and creative concepts that can solve
             real-world problems and build a better future.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -72,9 +72,9 @@ export function IdeaContestLanding({ content }) {
             <span className="text-white font-display font-bold text-2xl">
               {meta.prize}
             </span>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
@@ -100,7 +100,7 @@ export function IdeaContestLanding({ content }) {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
               </Link>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -123,7 +123,7 @@ export function IdeaContestLanding({ content }) {
 
       <section className="py-24 border-b border-white/5">
         <div className="container mx-auto px-6 md:px-12 text-center">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,8 +131,8 @@ export function IdeaContestLanding({ content }) {
             className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
           >
             Eligibility
-          </motion.p>
-          <motion.h2
+          </m.p>
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -140,8 +140,8 @@ export function IdeaContestLanding({ content }) {
             className="text-4xl md:text-5xl font-display font-bold mb-12"
           >
             Who Can <span className="text-gradient">Participate?</span>
-          </motion.h2>
-          <motion.div
+          </m.h2>
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -156,7 +156,7 @@ export function IdeaContestLanding({ content }) {
               Open to all students of Rajshahi University of Engineering &amp;
               Technology (RUET). Individual or team participation is welcome.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -166,7 +166,7 @@ export function IdeaContestLanding({ content }) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 rounded-full bg-amber-500/10 blur-[150px]" />
         </div>
         <div className="relative z-10 container mx-auto px-6 md:px-12 text-center">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -174,8 +174,8 @@ export function IdeaContestLanding({ content }) {
             className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-6"
           >
             Think. Create. Inspire.
-          </motion.p>
-          <motion.h2
+          </m.p>
+          <m.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -186,8 +186,8 @@ export function IdeaContestLanding({ content }) {
             <span className="text-amber-400">Change</span>
             <br />
             The Future.
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -198,8 +198,8 @@ export function IdeaContestLanding({ content }) {
             <strong className="text-white">{meta.deadline}</strong> and showcase it at
             the RCF Career Fair on{" "}
             <strong className="text-white">{meta.eventDate}</strong>.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -215,7 +215,7 @@ export function IdeaContestLanding({ content }) {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </main>

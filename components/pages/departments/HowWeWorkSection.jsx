@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/common/SectionHeader";
@@ -36,7 +36,7 @@ export function HowWeWorkSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {howWeWork.map((item, i) => (
-            <motion.div
+            <m.div
               key={item.title}
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -47,7 +47,7 @@ export function HowWeWorkSection() {
               </div>
               <h3 className="text-xl font-display font-semibold mb-3">{item.title}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

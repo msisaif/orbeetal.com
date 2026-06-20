@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ClientsBar } from "@/components/shared/ClientsBar";
@@ -14,7 +14,7 @@ export function PortfolioPageContent({ portfolioProjects, clients }) {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {portfolioProjects.map((project, i) => (
-              <motion.div
+              <m.div
                 key={project.title}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
@@ -60,7 +60,7 @@ export function PortfolioPageContent({ portfolioProjects, clients }) {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -73,21 +73,21 @@ export function PortfolioPageContent({ portfolioProjects, clients }) {
         <div className="absolute inset-0 bg-primary/5" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-primary/15 rounded-full blur-[100px] pointer-events-none" />
         <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-display font-bold mb-6"
           >
             Your Project Could Be <span className="text-gradient">Next</span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xl text-white/60 mb-10 max-w-xl mx-auto"
           >
             Let&apos;s build something together that you&apos;ll be proud to show the world.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -102,7 +102,7 @@ export function PortfolioPageContent({ portfolioProjects, clients }) {
                 Explore Services
               </Button>
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export function PageHero({ tagline, title, titleHighlight, description, breadcrumb }) {
@@ -14,15 +14,15 @@ export function PageHero({ tagline, title, titleHighlight, description, breadcru
         <Breadcrumb items={breadcrumb} />
 
         <div className="max-w-4xl">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
           >
             {tagline}
-          </motion.p>
-          <motion.h1
+          </m.p>
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -30,16 +30,16 @@ export function PageHero({ tagline, title, titleHighlight, description, breadcru
           >
             {title}{" "}
             {titleHighlight && <span className="text-gradient">{titleHighlight}</span>}
-          </motion.h1>
+          </m.h1>
           {description && (
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-white/65 max-w-2xl leading-relaxed"
             >
               {description}
-            </motion.p>
+            </m.p>
           )}
         </div>
       </div>

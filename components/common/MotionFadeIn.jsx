@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function MotionFadeIn({
@@ -12,7 +12,7 @@ export function MotionFadeIn({
   y = 20,
   as = "div",
 }) {
-  const Component = motion[as] ?? motion.div;
+  const Component = m[as] ?? m.div;
 
   return (
     <Component

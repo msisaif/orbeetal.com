@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { scrollToSection } from "@/lib/utils";
@@ -23,33 +23,33 @@ export function Hero() {
 
       <div className="container mx-auto px-6 md:px-12 relative z-30">
         <div className="max-w-4xl mx-auto text-center py-8 lg:py-0">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs md:text-sm font-medium mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
             Systems Online. Ready for Launch.
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             className="text-4xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] tracking-tight mb-8"
           >
             Elevate Above the <br className="hidden md:block" />
             <span className="text-gradient">Competition.</span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-lg md:text-2xl text-white/70 max-w-2xl mx-auto mb-12 font-light leading-relaxed"
           >
             A forward-thinking software company dedicated to building smart, impactful technology — empowering businesses through innovation and intelligent solutions.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
@@ -69,7 +69,7 @@ export function Hero() {
             >
               Explore Capabilities
             </Button>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,16 +20,16 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
         </div>
 
         <div className="relative z-10 container mx-auto px-6 md:px-12 text-center">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-primary text-sm font-medium uppercase tracking-widest mb-6"
           >
             {meta.organizer} · {meta.edition} Edition
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -40,18 +40,18 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
             <h1 className="text-7xl md:text-9xl font-display font-bold leading-none mb-6">
               <span className="text-white">FAIR</span>
             </h1>
-          </motion.div>
+          </m.div>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-amber-400 text-base md:text-lg font-medium uppercase tracking-widest mb-6"
           >
             Your Career Starts Here
-          </motion.p>
+          </m.p>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -60,9 +60,9 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
             Submit your CV and connect with top recruiters at{" "}
             {meta.venue} on{" "}
             <strong className="text-white">{meta.eventDate}</strong>.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
@@ -87,7 +87,7 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
               </Link>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -117,7 +117,7 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 rounded-full bg-primary/10 blur-[150px]" />
         </div>
         <div className="relative z-10 container mx-auto px-6 md:px-12 text-center">
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -125,8 +125,8 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
             className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-6"
           >
             Your Career Starts Here
-          </motion.p>
-          <motion.h2
+          </m.p>
+          <m.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -136,8 +136,8 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
             Submit Your CV,{" "}
             <br />
             <span className="text-gradient">Shape Your Future.</span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -147,8 +147,8 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
             Meet top recruiters at{" "}
             <strong className="text-white">{meta.venue}</strong> on{" "}
             <strong className="text-white">{meta.eventDate}</strong>.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -163,7 +163,7 @@ export function CvSubmitLanding({ content, ruetDepartments }) {
                 Submit Your CV <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </main>

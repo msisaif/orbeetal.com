@@ -1,6 +1,11 @@
+import dynamic from "next/dynamic";
 import { SectionHeader } from "@/components/common/SectionHeader";
-import { TeamGrid } from "@/components/shared/TeamGrid";
 import { getTeamMembers } from "@/lib/content/team.js";
+
+const TeamGrid = dynamic(
+  () => import("@/components/shared/TeamGrid").then((m) => m.TeamGrid),
+  { ssr: true }
+);
 
 export async function Team() {
   const teamMembers = await getTeamMembers();
