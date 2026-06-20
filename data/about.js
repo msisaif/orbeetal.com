@@ -25,6 +25,22 @@ export const stats = [
   { label: "Countries Served",   value: "3+"  },
 ];
 
+export const aboutIntro =
+  "Orbeetal is a forward-thinking software company based in Dhaka, Bangladesh. We specialize in delivering cutting-edge digital solutions — from web and mobile development to AI-powered systems and cybersecurity — helping businesses of all sizes compete and grow in the digital age.";
+
+export const aboutPageExtra =
+  "Founded by seven directors who believe technology should be a force for growth, we are a proud member of BASIS (Bangladesh Association of Software & Information Services) and serve clients across Bangladesh and internationally.";
+
+export const mission = {
+  title: "Our Mission",
+  text: "To engineer digital products that elevate businesses above the competition — combining technical precision, creative excellence, and strategic thinking to deliver measurable impact.",
+};
+
+export const vision = {
+  title: "Our Vision",
+  text: "To become the most trusted technology partner for ambitious businesses in South Asia and beyond — known for our integrity, innovation, and the lasting success of our clients.",
+};
+
 export const whyChooseUs = [
   {
     title: "BASIS Certified Member",

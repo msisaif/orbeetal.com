@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
@@ -13,15 +13,53 @@ import { getEnabledEventNavLinks } from "@/lib/siteFeatures.js";
 const eventLinks = getEnabledEventNavLinks().map((link) => ({ ...link, highlight: true }));
 const allLinks = [...navLinks, ...eventLinks];
 
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const menu = menuRef.current;
+    const focusable = menu?.querySelectorAll(FOCUSABLE);
+    focusable?.[0]?.focus();
+
+    function handleKeyDown(e) {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !menu) return;
+
+      const items = menu.querySelectorAll(FOCUSABLE);
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   return (
     <nav
@@ -63,15 +101,23 @@ export function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
+          ref={toggleRef}
           className="lg:hidden text-white z-50"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-nav"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Mobile Nav Overlay */}
         <div
+          ref={menuRef}
+          id="mobile-nav"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
           className={`fixed h-screen lg:hidden inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 transition-all duration-300 ${
             isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}

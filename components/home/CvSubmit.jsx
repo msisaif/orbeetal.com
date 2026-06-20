@@ -138,7 +138,7 @@ export function CvSubmit() {
                     />
                   </div>
                   <div>
-                    <p className="text-xs text-white/40 uppercase tracking-wider mb-1">
+                    <p className="text-xs text-white/55 uppercase tracking-wider mb-1">
                       {stat.label}
                     </p>
                     <p

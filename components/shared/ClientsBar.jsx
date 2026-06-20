@@ -5,7 +5,7 @@ export function ClientsBar() {
   return (
     <section className="py-12 border-y border-white/5 bg-white/[0.02] relative z-20">
       <div className="container mx-auto px-6 md:px-12">
-        <p className="text-center text-sm font-medium text-white/40 mb-8 uppercase tracking-widest">
+        <p className="text-center text-sm font-medium text-white/55 mb-8 uppercase tracking-widest">
           Trusted by Our Happy Clients
         </p>
         <div className="flex flex-wrap justify-between items-center gap-4">

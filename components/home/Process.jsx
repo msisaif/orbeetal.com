@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/common/SectionHeader";
+import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { processSteps } from "@/data/index.js";
 
 export function Process() {
@@ -20,12 +20,7 @@ export function Process() {
           <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 hidden lg:block -translate-y-1/2" />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative z-10">
             {processSteps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.2 }}
-                className="bg-background relative"
-              >
+              <MotionFadeIn key={step.num} delay={i * 0.2} className="bg-background relative">
                 <div className="text-8xl font-display font-black text-white/5 absolute -top-10 -left-4 select-none pointer-events-none">
                   {step.num}
                 </div>
@@ -34,7 +29,7 @@ export function Process() {
                 </div>
                 <h3 className="text-2xl font-display font-semibold mb-4">{step.title}</h3>
                 <p className="text-white/60 leading-relaxed">{step.description}</p>
-              </motion.div>
+              </MotionFadeIn>
             ))}
           </div>
         </div>

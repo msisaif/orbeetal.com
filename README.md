@@ -19,6 +19,9 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Production build |
 | `npm run start` | Serve production build |
 | `npm run lint` | Run ESLint |
+| `npm test` | Run Vitest unit tests |
+| `npm run test:watch` | Vitest in watch mode |
+| `npm run test:e2e` | Playwright smoke tests (requires build + start) |
 
 ## Environment Variables
 
@@ -57,22 +60,38 @@ export const activeTopBanner = "idea-contest"; // false | "idea-contest" | "cv-s
 app/              Routes, metadata, API routes (OG images, CV submit proxy)
 components/
   layout/         PageLayout, Navbar, Footer, TopBanner, PageHero, BackToTop
-  common/         Section, SectionHeader, CallToAction, BasisBadge, SocialLinks
+  common/         Section, SectionHeader, CallToAction, MotionFadeIn, BasisBadge
   home/           Homepage sections (Hero, Services, Team, …)
   pages/          Page-specific content (mirrors app routes)
-  shared/         Reused grids and widgets (ServicesGrid, TeamGrid, ClientsBar)
+  shared/         Reused grids and widgets (AboutContentGrid, ContactInfoPanel, …)
   event/          Shared event landing components
   ui/             Button, Card, Toast, form inputs
   icons/          SVG icon components
-data/             Static content (services, team, events, navigation)
-lib/              Utilities (cn, icons, siteFeatures, scroll helpers)
+data/             Static content (services, team, events, legal, navigation)
+  legal/          Terms, privacy, cookies content
+lib/              Utilities (cn, icons, schemas, validateData, siteFeatures)
 hooks/            Custom React hooks
+e2e/              Playwright smoke tests
 ```
+
+## Data Validation
+
+Static content in `data/` is validated at build time with Zod schemas (`lib/schemas.js`). Invalid data structure causes the build to fail with a descriptive error.
+
+## Third-Party Dependencies
+
+- **JotForm** — Idea Contest and CV Submit external form links (`data/ideaContest.js`, `data/cvSubmit.js` → `submitFormUrl`)
+- **Google Maps** — Contact page location embed (`data/contact.js` → `mapEmbed`)
 
 ## Backend Integration
 
 CV submissions are proxied through `app/api/cv-submit/route.js` to the Laravel API at `POST /api/cv-submit`, keeping the site secret server-side.
 
+Laravel endpoint protections:
+- `X-Submit-Secret` header verification (`VerifySubmitSecret` middleware)
+- File validation: PDF only, max 5MB (`StoreCvSubmissionRequest`)
+- Rate limiting: 10 requests per minute per IP (`throttle:10,1`)
+
 ## Deploy
 
-Standard Next.js deployment (e.g. Vercel, Node server via `npm run build && npm run start`). Ensure environment variables are set in the hosting platform.
+Standard Next.js deployment (e.g. Vercel, Node server via `npm run build && npm run start`). Ensure environment variables are set in the hosting platform. Next.js image optimization is enabled by default.

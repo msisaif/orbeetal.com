@@ -5,7 +5,7 @@ export { portfolioProjects, portfolioPageMeta } from "./portfolio.js";
 export { testimonials } from "./testimonials.js";
 export { clients } from "./clients.js";
 export { processSteps } from "./process.js";
-export { stats, whyChooseUs, aboutPageMeta } from "./about.js";
+export { stats, whyChooseUs, aboutIntro, aboutPageExtra, mission, vision, aboutPageMeta } from "./about.js";
 export { contactInfo, contactPageMeta } from "./contact.js";
 export {
   ideaContestMeta,
@@ -32,3 +32,5 @@ export {
   customBannerContent,
 } from "./siteConfig.js";
 export { ruetDepartments } from "./universities/ruet.js";
+
+import "./validateAll.js";

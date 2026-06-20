@@ -140,8 +140,11 @@ export function CvSubmitForm() {
           noValidate
         >
           <div>
-            <FieldLabel required>University</FieldLabel>
+            <FieldLabel htmlFor="cv-university" required>University</FieldLabel>
             <Select
+              id="cv-university"
+              aria-invalid={!!errors.university}
+              aria-describedby={errors.university ? "cv-university-error" : undefined}
               {...register("university")}
               onChange={(e) => {
                 register("university").onChange(e);
@@ -156,12 +159,15 @@ export function CvSubmitForm() {
                 </option>
               ))}
             </Select>
-            <FieldError message={errors.university?.message} />
+            <FieldError id="cv-university-error" message={errors.university?.message} />
           </div>
 
           <div>
-            <FieldLabel required>Department</FieldLabel>
+            <FieldLabel htmlFor="cv-department" required>Department</FieldLabel>
             <Select
+              id="cv-department"
+              aria-invalid={!!errors.department_code}
+              aria-describedby={errors.department_code ? "cv-department-error" : undefined}
               className={cn(!selectedUniversity && "opacity-50 cursor-not-allowed")}
               disabled={!selectedUniversity}
               {...register("department_code")}
@@ -173,40 +179,65 @@ export function CvSubmitForm() {
                 </option>
               ))}
             </Select>
-            <FieldError message={errors.department_code?.message} />
+            <FieldError id="cv-department-error" message={errors.department_code?.message} />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <FieldLabel required>Roll Number</FieldLabel>
-              <Input placeholder="e.g. 2003001" {...register("roll_number")} />
-              <FieldError message={errors.roll_number?.message} />
+              <FieldLabel htmlFor="cv-roll" required>Roll Number</FieldLabel>
+              <Input
+                id="cv-roll"
+                aria-invalid={!!errors.roll_number}
+                aria-describedby={errors.roll_number ? "cv-roll-error" : undefined}
+                placeholder="e.g. 2003001"
+                {...register("roll_number")}
+              />
+              <FieldError id="cv-roll-error" message={errors.roll_number?.message} />
             </div>
             <div>
-              <FieldLabel required>Full Name</FieldLabel>
-              <Input placeholder="Your full name" {...register("name")} />
-              <FieldError message={errors.name?.message} />
+              <FieldLabel htmlFor="cv-name" required>Full Name</FieldLabel>
+              <Input
+                id="cv-name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "cv-name-error" : undefined}
+                placeholder="Your full name"
+                {...register("name")}
+              />
+              <FieldError id="cv-name-error" message={errors.name?.message} />
             </div>
           </div>
 
           <div>
-            <FieldLabel required>Phone Number</FieldLabel>
-            <Input type="tel" placeholder="+880 1XXX XXXXXX" {...register("phone")} />
-            <FieldError message={errors.phone?.message} />
+            <FieldLabel htmlFor="cv-phone" required>Phone Number</FieldLabel>
+            <Input
+              id="cv-phone"
+              type="tel"
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "cv-phone-error" : undefined}
+              placeholder="+880 1XXX XXXXXX"
+              {...register("phone")}
+            />
+            <FieldError id="cv-phone-error" message={errors.phone?.message} />
           </div>
 
           <div>
-            <FieldLabel required>CV File (PDF only, max 5MB)</FieldLabel>
-            <label className="flex flex-col items-center justify-center gap-2 w-full rounded-lg border border-dashed border-white/20 bg-white/3 hover:bg-white/6 hover:border-primary/40 transition-colors py-6 cursor-pointer">
-              <Upload className="w-6 h-6 text-foreground/40" />
+            <FieldLabel htmlFor="cv-file" required>CV File (PDF only, max 5MB)</FieldLabel>
+            <label
+              htmlFor="cv-file"
+              className="flex flex-col items-center justify-center gap-2 w-full rounded-lg border border-dashed border-white/20 bg-white/3 hover:bg-white/6 hover:border-primary/40 transition-colors py-6 cursor-pointer"
+            >
+              <Upload className="w-6 h-6 text-foreground/40" aria-hidden="true" />
               <span className="text-sm text-foreground/50">
                 {fileName || "Click to upload your CV"}
               </span>
               <span className="text-xs text-foreground/30">PDF · max 5MB</span>
               <input
+                id="cv-file"
                 type="file"
                 accept=".pdf,application/pdf"
                 className="hidden"
+                aria-invalid={!!errors.cv}
+                aria-describedby={errors.cv ? "cv-file-error" : undefined}
                 {...register("cv")}
                 onChange={(e) => {
                   register("cv").onChange(e);
@@ -214,13 +245,16 @@ export function CvSubmitForm() {
                 }}
               />
             </label>
-            <FieldError message={errors.cv?.message} />
+            <FieldError id="cv-file-error" message={errors.cv?.message} />
           </div>
 
           <div>
-            <FieldLabel>Note (optional)</FieldLabel>
+            <FieldLabel htmlFor="cv-note">Note (optional)</FieldLabel>
             <Textarea
+              id="cv-note"
               className="h-24"
+              aria-invalid={!!errors.note}
+              aria-describedby={errors.note ? "cv-note-error" : undefined}
               placeholder="e.g. I am interested in Full Stack Development..."
               {...register("note")}
             />
@@ -236,7 +270,7 @@ export function CvSubmitForm() {
                 </button>
               ))}
             </div>
-            <FieldError message={errors.note?.message} />
+            <FieldError id="cv-note-error" message={errors.note?.message} />
           </div>
 
           <Button

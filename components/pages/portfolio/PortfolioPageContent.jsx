@@ -52,10 +52,10 @@ export function PortfolioPageContent() {
                   <h3 className="text-xl font-display font-semibold mb-3 text-white group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-white/55 text-sm leading-relaxed mb-5">{project.description}</p>
+                  <p className="text-white/65 text-sm leading-relaxed mb-5">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="text-xs text-white/50 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                      <span key={tag} className="text-xs text-white/60 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
                         {tag}
                       </span>
                     ))}

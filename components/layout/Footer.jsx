@@ -68,8 +68,8 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm">© {new Date().getFullYear()} Orbeetal. All rights reserved.</p>
-          <p className="text-white/40 text-sm flex items-center gap-2">
+          <p className="text-white/55 text-sm">© {new Date().getFullYear()} Orbeetal. All rights reserved.</p>
+          <p className="text-white/55 text-sm flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse" />
             All systems nominal
           </p>

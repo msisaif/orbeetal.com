@@ -23,7 +23,7 @@ export function TeamMemberProfile({ member }) {
               <span>›</span>
               <Link href="/team" className="hover:text-white/60 transition-colors">Team</Link>
               <span>›</span>
-              <span className="text-white/50">{member.name}</span>
+              <span className="text-white/60">{member.name}</span>
             </nav>
           </div>
 
@@ -66,7 +66,7 @@ export function TeamMemberProfile({ member }) {
                   <div className="text-3xl md:text-4xl font-display font-bold text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-white/40 uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-xs text-white/55 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
