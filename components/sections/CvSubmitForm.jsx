@@ -5,13 +5,18 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Upload, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Upload, Send, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { FieldLabel } from "@/components/ui/field-label";
+import { FieldError } from "@/components/ui/field-error";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { ruetDepartments } from "@/data/universities/ruet.js";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const schema = z.object({
   university:      z.string().min(1, "Select a university"),
@@ -52,32 +57,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay },
 });
 
-function FieldLabel({ children, required }) {
-  return (
-    <label className="block text-sm font-medium text-foreground/80 mb-1.5">
-      {children}
-      {required && <span className="text-red-400 ml-1">*</span>}
-    </label>
-  );
-}
-
-function FieldError({ message }) {
-  if (!message) return null;
-  return (
-    <p className="flex items-center gap-1 text-xs text-red-400 mt-1.5">
-      <AlertCircle className="w-3 h-3 shrink-0" />
-      {message}
-    </p>
-  );
-}
-
-const inputClass =
-  "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-primary/60 focus:bg-white/8 transition-colors";
-
-const selectClass =
-  "w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary/60 transition-colors appearance-none cursor-pointer";
-
-export default function CvSubmitForm() {
+export function CvSubmitForm() {
   const { toast } = useToast();
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [fileName, setFileName] = useState("");
@@ -159,35 +139,30 @@ export default function CvSubmitForm() {
           className="glass-panel rounded-2xl p-6 md:p-8 space-y-5"
           noValidate
         >
-          {/* University */}
           <div>
             <FieldLabel required>University</FieldLabel>
-            <div className="relative">
-              <select
-                className={selectClass}
-                {...register("university")}
-                onChange={(e) => {
-                  register("university").onChange(e);
-                  setSelectedUniversity(e.target.value);
-                  setValue("department_code", "");
-                }}
-              >
-                <option value="">Select university</option>
-                {UNIVERSITIES.map((u) => (
-                  <option key={u.value} value={u.value}>
-                    {u.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <Select
+              {...register("university")}
+              onChange={(e) => {
+                register("university").onChange(e);
+                setSelectedUniversity(e.target.value);
+                setValue("department_code", "");
+              }}
+            >
+              <option value="">Select university</option>
+              {UNIVERSITIES.map((u) => (
+                <option key={u.value} value={u.value}>
+                  {u.label}
+                </option>
+              ))}
+            </Select>
             <FieldError message={errors.university?.message} />
           </div>
 
-          {/* Department */}
           <div>
             <FieldLabel required>Department</FieldLabel>
-            <select
-              className={cn(selectClass, !selectedUniversity && "opacity-50 cursor-not-allowed")}
+            <Select
+              className={cn(!selectedUniversity && "opacity-50 cursor-not-allowed")}
               disabled={!selectedUniversity}
               {...register("department_code")}
             >
@@ -197,45 +172,29 @@ export default function CvSubmitForm() {
                   {d.shortName} — {d.name}
                 </option>
               ))}
-            </select>
+            </Select>
             <FieldError message={errors.department_code?.message} />
           </div>
 
-          {/* Roll + Name row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <FieldLabel required>Roll Number</FieldLabel>
-              <input
-                className={inputClass}
-                placeholder="e.g. 2003001"
-                {...register("roll_number")}
-              />
+              <Input placeholder="e.g. 2003001" {...register("roll_number")} />
               <FieldError message={errors.roll_number?.message} />
             </div>
             <div>
               <FieldLabel required>Full Name</FieldLabel>
-              <input
-                className={inputClass}
-                placeholder="Your full name"
-                {...register("name")}
-              />
+              <Input placeholder="Your full name" {...register("name")} />
               <FieldError message={errors.name?.message} />
             </div>
           </div>
 
-          {/* Phone */}
           <div>
             <FieldLabel required>Phone Number</FieldLabel>
-            <input
-              className={inputClass}
-              type="tel"
-              placeholder="+880 1XXX XXXXXX"
-              {...register("phone")}
-            />
+            <Input type="tel" placeholder="+880 1XXX XXXXXX" {...register("phone")} />
             <FieldError message={errors.phone?.message} />
           </div>
 
-          {/* CV File */}
           <div>
             <FieldLabel required>CV File (PDF only, max 5MB)</FieldLabel>
             <label className="flex flex-col items-center justify-center gap-2 w-full rounded-lg border border-dashed border-white/20 bg-white/3 hover:bg-white/6 hover:border-primary/40 transition-colors py-6 cursor-pointer">
@@ -258,11 +217,10 @@ export default function CvSubmitForm() {
             <FieldError message={errors.cv?.message} />
           </div>
 
-          {/* Note */}
           <div>
             <FieldLabel>Note (optional)</FieldLabel>
-            <textarea
-              className={cn(inputClass, "resize-none h-24")}
+            <Textarea
+              className="h-24"
               placeholder="e.g. I am interested in Full Stack Development..."
               {...register("note")}
             />
@@ -281,7 +239,6 @@ export default function CvSubmitForm() {
             <FieldError message={errors.note?.message} />
           </div>
 
-          {/* Submit */}
           <Button
             type="submit"
             disabled={isSubmitting}

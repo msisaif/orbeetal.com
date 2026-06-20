@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/SectionHeader";
 import { stats } from "@/data/index.js";
 import { TeamGrid } from "@/components/sections/TeamGrid";
 
@@ -22,22 +23,12 @@ export function TeamPageContent() {
       <section className="py-20 border-t border-white/5 relative z-20">
         <div className="absolute inset-0 bg-white/1.5" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5 }}
-              className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
-            >
-              By The Numbers
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-display font-bold"
-            >
-              Impact We&apos;ve <span className="text-gradient">Created</span>
-            </motion.h2>
-          </div>
+          <SectionHeader
+            tagline="By The Numbers"
+            title="Impact We've"
+            titleHighlight="Created"
+            className="mb-16"
+          />
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
             {stats.map((stat, i) => (

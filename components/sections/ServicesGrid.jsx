@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Code2, Paintbrush, Smartphone, ShieldCheck, TrendingUp, Brain, Monitor, Cpu } from "lucide-react";
 import { services } from "@/data/index.js";
+import { resolveIcon } from "@/lib/icons";
 
-const ICON_MAP = { Code2, Paintbrush, Smartphone, ShieldCheck, TrendingUp, Brain, Monitor, Cpu };
-
-export function ServicesGrid({ linkToPage = false }) {
+export function ServicesGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((service, i) => {
-        const Icon = ICON_MAP[service.icon];
+        const Icon = resolveIcon(service.icon);
         return (
           <motion.div
             key={service.title}

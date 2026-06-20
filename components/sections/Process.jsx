@@ -1,22 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/SectionHeader";
 import { processSteps } from "@/data/index.js";
 
 export function Process() {
   return (
     <section id="process" className="py-24 md:py-32 relative z-20 border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <p className="text-primary text-sm font-medium uppercase tracking-widest mb-4">How We Work</p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-            Our <span className="text-gradient">Process</span>
-          </h2>
-          <p className="text-xl text-white/60">A battle-tested methodology built for speed, precision, and results.</p>
-        </div>
+        <SectionHeader
+          tagline="How We Work"
+          title="Our"
+          titleHighlight="Process"
+          description="A battle-tested methodology built for speed, precision, and results."
+          className="mb-20"
+        />
 
         <div className="relative">
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 hidden lg:block -translate-y-1/2"></div>
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-white/10 hidden lg:block -translate-y-1/2" />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative z-10">
             {processSteps.map((step, i) => (
               <motion.div

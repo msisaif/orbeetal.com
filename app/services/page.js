@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 import { ServicesPageContent } from "@/components/sections/ServicesPageContent";
 import { servicesPageMeta } from "@/data/services.js";
@@ -8,8 +7,7 @@ export const metadata = servicesPageMeta;
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="What We Offer"
         title="Strategic"
@@ -18,7 +16,6 @@ export default function ServicesPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
       <ServicesPageContent />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

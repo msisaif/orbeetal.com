@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { Hero } from "@/components/sections/Hero";
 import { IdeaContest } from "@/components/sections/IdeaContest";
 import { CvSubmit } from "@/components/sections/CvSubmit";
@@ -16,15 +15,14 @@ import { BasisBadge } from "@/components/BasisBadge";
 import { activeHero } from "@/data/siteConfig.js";
 
 const heroComponents = {
-  "hero":         <Hero />,
+  hero: <Hero />,
   "idea-contest": <IdeaContest />,
-  "cv-submit":    <CvSubmit />,
+  "cv-submit": <CvSubmit />,
 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       {heroComponents[activeHero] ?? <Hero />}
       <div className="py-8 flex justify-center border-b border-white/5 bg-white/1 border-t">
         <BasisBadge />
@@ -38,7 +36,6 @@ export default function Home() {
       <About />
       <Process />
       <Contact />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

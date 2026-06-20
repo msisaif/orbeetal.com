@@ -2,39 +2,24 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
 import { FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 import { contactInfo } from "@/data/index.js";
 
 export function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 relative z-20 border-t border-white/5 overflow-hidden">
-      <div className="absolute inset-0 bg-primary/5"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-primary/5" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
-          >
-            Get In Touch
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-6"
-          >
-            Ready to <span className="text-gradient">Launch?</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-white/60"
-          >
-            Reach out and let's start building something exceptional together.
-          </motion.p>
-        </div>
+        <SectionHeader
+          tagline="Get In Touch"
+          title="Ready to"
+          titleHighlight="Launch?"
+          description="Reach out and let&apos;s start building something exceptional together."
+          className="mb-16"
+        />
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <motion.div
@@ -45,7 +30,7 @@ export function Contact() {
             <div>
               <h3 className="text-2xl font-display font-semibold text-white mb-2">Contact Information</h3>
               <p className="text-white/55 leading-relaxed">
-                We're based in {contactInfo.location} and serve clients across the globe. Get in touch via any channel below.
+                We&apos;re based in {contactInfo.location} and serve clients across the globe. Get in touch via any channel below.
               </p>
             </div>
 

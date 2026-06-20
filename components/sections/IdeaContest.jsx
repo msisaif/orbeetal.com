@@ -6,8 +6,7 @@ import { Trophy, Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ideaContestMeta, ideaContestStats } from "@/data/index.js";
-
-const ICON_MAP = { Trophy, Calendar, Clock };
+import { resolveIcon } from "@/lib/icons";
 
 export function IdeaContest() {
   return (
@@ -105,7 +104,7 @@ export function IdeaContest() {
           {/* Right: Stat Cards */}
           <div className="flex flex-col gap-4">
             {ideaContestStats.map((stat, i) => {
-              const Icon = ICON_MAP[stat.icon];
+              const Icon = resolveIcon(stat.icon);
               return (
                 <motion.div
                   key={stat.label}

@@ -6,8 +6,7 @@ import { CalendarDays, MapPin, Users, ArrowRight, Briefcase } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { cvSubmitMeta, cvSubmitStats } from "@/data/index.js";
-
-const ICON_MAP = { CalendarDays, MapPin, Users, Briefcase };
+import { resolveIcon } from "@/lib/icons";
 
 export function CvSubmit() {
   return (
@@ -108,7 +107,7 @@ export function CvSubmit() {
           {/* Right: Stat Cards */}
           <div className="flex flex-col gap-4">
             {cvSubmitStats.map((stat, i) => {
-              const Icon = ICON_MAP[stat.icon];
+              const Icon = resolveIcon(stat.icon);
               return (
                 <motion.div
                   key={stat.label}

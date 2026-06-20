@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 
 export const metadata = {
@@ -58,8 +57,7 @@ Delays caused by the client may result in adjusted timelines at no additional co
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="Legal"
         title="Terms of"
@@ -83,8 +81,6 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

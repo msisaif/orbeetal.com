@@ -10,7 +10,7 @@ export default function NotFound() {
           </svg>
           <h1 className="text-2xl font-bold text-foreground">404 — Page Not Found</h1>
         </div>
-        <p className="mt-4 text-sm text-muted-foreground">The page you're looking for doesn't exist.</p>
+        <p className="mt-4 text-sm text-muted-foreground">The page you&apos;re looking for doesn&apos;t exist.</p>
         <Link href="/" className="mt-6 inline-block text-primary hover:underline text-sm font-medium">
           ← Back to Home
         </Link>

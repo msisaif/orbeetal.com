@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
 import { stats, whyChooseUs } from "@/data/index.js";
 
 export function About() {
@@ -25,10 +26,14 @@ export function About() {
             initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.7 }}
           >
-            <p className="text-primary text-sm font-medium uppercase tracking-widest mb-4">About Orbeetal</p>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
-              One of the Fastest Ways to <span className="text-gradient">Business Growth</span>
-            </h2>
+            <SectionHeader
+              tagline="About Orbeetal"
+              title="One of the Fastest Ways to"
+              titleHighlight="Business Growth"
+              align="left"
+              animated={false}
+              className="mb-6"
+            />
             <p className="text-xl text-white/70 mb-6 font-light leading-relaxed">
               Orbeetal is a forward-thinking software company based in Dhaka, Bangladesh. We specialize in delivering cutting-edge digital solutions — from web and mobile development to AI-powered systems and cybersecurity — helping businesses of all sizes compete and grow in the digital age.
             </p>

@@ -86,7 +86,7 @@ export function PortfolioPageContent() {
             viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
             className="text-xl text-white/60 mb-10 max-w-xl mx-auto"
           >
-            Let's build something together that you'll be proud to show the world.
+            Let&apos;s build something together that you&apos;ll be proud to show the world.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}

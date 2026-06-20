@@ -3,35 +3,20 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { SectionHeader } from "@/components/SectionHeader";
 import { portfolioProjects } from "@/data/index.js";
 
 export function Portfolio() {
   return (
     <section id="portfolio" className="py-24 md:py-32 relative z-20 border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.5 }}
-            className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
-          >
-            Our Portfolio
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-6"
-          >
-            Projects We're <span className="text-gradient">Proud Of</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-white/60"
-          >
-            A selection of work that defines our standards and ambition.
-          </motion.p>
-        </div>
+        <SectionHeader
+          tagline="Our Portfolio"
+          title="Projects We're"
+          titleHighlight="Proud Of"
+          description="A selection of work that defines our standards and ambition."
+          className="mb-20"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioProjects.map((project, i) => (
@@ -53,7 +38,7 @@ export function Portfolio() {
                     />
                   )}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050B14] to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#050B14] to-transparent" />
                 {project.link && (
                   <a
                     href={project.link}

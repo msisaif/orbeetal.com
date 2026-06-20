@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 import { ContactPageContent } from "@/components/sections/ContactPageContent";
 import { contactPageMeta } from "@/data/contact.js";
@@ -8,8 +7,7 @@ export const metadata = contactPageMeta;
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="Get In Touch"
         title="Ready to"
@@ -18,7 +16,6 @@ export default function ContactPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
       <ContactPageContent />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 import { TeamPageContent } from "@/components/sections/TeamPageContent";
 import { teamPageMeta } from "@/data/team/index.js";
@@ -8,8 +7,7 @@ export const metadata = teamPageMeta;
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="Leadership"
         title="Meet the"
@@ -18,7 +16,6 @@ export default function TeamPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Team" }]}
       />
       <TeamPageContent />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

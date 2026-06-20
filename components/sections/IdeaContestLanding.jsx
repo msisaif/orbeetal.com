@@ -2,20 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  Trophy,
-  Calendar,
-  Clock,
-  Video,
-  Lightbulb,
-  FileText,
-  CheckCircle2,
-  Users,
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
+import { Trophy, Users, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { EventInfoCardGrid } from "@/components/sections/event/EventInfoCardGrid";
+import { EventStepsList } from "@/components/sections/event/EventStepsList";
+import { EventCriteriaList } from "@/components/sections/event/EventCriteriaList";
 import {
   ideaContestMeta,
   ideaContestInfoCards,
@@ -23,13 +14,9 @@ import {
   ideaContestCriteria,
 } from "@/data/index.js";
 
-const ICON_MAP = { Trophy, Calendar, Clock, Video, Lightbulb, FileText, CheckCircle2, Users };
-
-export default function IdeaContestLanding() {
+export function IdeaContestLanding() {
   return (
     <main className="bg-background text-foreground pt-12">
-
-      {/* ── Hero ── */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-white/5 pt-24 pb-16">
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
@@ -79,7 +66,6 @@ export default function IdeaContestLanding() {
             real-world problems and build a better future.
           </motion.p>
 
-          {/* Prize badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -123,128 +109,23 @@ export default function IdeaContestLanding() {
         </div>
       </section>
 
-      {/* ── Event Info Strip ── */}
-      <section className="py-16 border-b border-white/5">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ideaContestInfoCards.map((card, i) => {
-              const Icon = ICON_MAP[card.icon];
-              return (
-                <motion.div
-                  key={card.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="glass-panel rounded-2xl p-8 border border-white/10 text-center hover:border-primary/30 transition-colors duration-300"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">{card.label}</p>
-                  <p className="text-xl font-display font-bold text-white mb-1">{card.value}</p>
-                  <p className="text-sm text-white/50">{card.sub}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <EventInfoCardGrid cards={ideaContestInfoCards} />
 
-      {/* ── What to Submit ── */}
-      <section className="py-24 border-b border-white/5">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="text-center mb-16">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
-            >
-              Submission Guidelines
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-display font-bold"
-            >
-              What to <span className="text-gradient">Submit?</span>
-            </motion.h2>
-          </div>
+      <EventStepsList
+        tagline="Submission Guidelines"
+        title="What to"
+        titleHighlight="Submit?"
+        items={ideaContestSubmitItems}
+        accent="amber"
+      />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ideaContestSubmitItems.map((item, i) => {
-              const Icon = ICON_MAP[item.icon];
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="glass-panel rounded-2xl p-8 border border-white/10 hover:border-amber-400/30 hover:bg-amber-500/5 transition-all duration-300 group"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors duration-300">
-                    <Icon className="w-6 h-6 text-amber-400" />
-                  </div>
-                  <h3 className="text-xl font-display font-semibold text-white mb-3">{item.title}</h3>
-                  <p className="text-white/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <EventCriteriaList
+        tagline="Judging"
+        title="Evaluation"
+        titleHighlight="Criteria"
+        items={ideaContestCriteria}
+      />
 
-      {/* ── Evaluation Criteria ── */}
-      <section className="py-24 border-b border-white/5">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="text-center mb-16">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-primary text-sm font-medium uppercase tracking-widest mb-4"
-            >
-              Judging
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-display font-bold"
-            >
-              Evaluation <span className="text-gradient">Criteria</span>
-            </motion.h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
-            {ideaContestCriteria.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass-panel rounded-2xl p-6 border border-white/10 flex items-start gap-4 hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
-              >
-                <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-display font-semibold text-white mb-1">{item.label}</p>
-                  <p className="text-sm text-white/50">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Who Can Participate ── */}
       <section className="py-24 border-b border-white/5">
         <div className="container mx-auto px-6 md:px-12 text-center">
           <motion.p
@@ -284,7 +165,6 @@ export default function IdeaContestLanding() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-grid-pattern opacity-20" />

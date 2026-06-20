@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 import { PortfolioPageContent } from "@/components/sections/PortfolioPageContent";
 import { portfolioPageMeta } from "@/data/portfolio.js";
@@ -8,8 +7,7 @@ export const metadata = portfolioPageMeta;
 
 export default function PortfolioPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="Our Portfolio"
         title="Projects We're"
@@ -18,7 +16,6 @@ export default function PortfolioPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Portfolio" }]}
       />
       <PortfolioPageContent />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

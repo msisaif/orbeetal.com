@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { PageHero } from "@/components/PageHero";
 import { DepartmentsPageContent } from "@/components/sections/DepartmentsPageContent";
 import { departmentsPageMeta } from "@/data/departments.js";
@@ -8,8 +7,7 @@ export const metadata = departmentsPageMeta;
 
 export default function DepartmentsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden selection:bg-primary/30 selection:text-white">
-      <Navbar />
+    <PageLayout>
       <PageHero
         tagline="Our Structure"
         title="Our"
@@ -18,7 +16,6 @@ export default function DepartmentsPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Departments" }]}
       />
       <DepartmentsPageContent />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 }

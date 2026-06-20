@@ -21,7 +21,7 @@ export function ContactPageContent() {
             <div>
               <h3 className="text-2xl font-display font-semibold text-white mb-2">Contact Information</h3>
               <p className="text-white/55 leading-relaxed">
-                We're based in {contactInfo.location} and serve clients across the globe. Get in touch via any channel below.
+                We&apos;re based in {contactInfo.location} and serve clients across the globe. Get in touch via any channel below.
               </p>
             </div>
 
