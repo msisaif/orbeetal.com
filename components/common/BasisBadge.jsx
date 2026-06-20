@@ -25,7 +25,7 @@ export function BasisBadge() {
           <span>Proud Member of BASIS</span>
           <ExternalLink className="inline-block size-6 ml-auto mb-2" />
         </div>
-        <span className="text-amber-400/50 text-xs hidden sm:block mt-0.5">
+        <span className="text-amber-200/80 text-xs hidden sm:block mt-0.5">
           Bangladesh Association of Software &amp; Information Services
         </span>
       </div>

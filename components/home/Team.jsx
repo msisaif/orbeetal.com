@@ -1,9 +1,10 @@
-"use client";
-
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { TeamGrid } from "@/components/shared/TeamGrid";
+import { getTeamMembers } from "@/lib/content/team.js";
 
-export function Team() {
+export async function Team() {
+  const teamMembers = await getTeamMembers();
+
   return (
     <section id="team" className="py-24 md:py-32 relative z-20 border-t border-white/5 overflow-hidden">
       <div className="absolute inset-0 bg-white/1.5" />
@@ -17,7 +18,7 @@ export function Team() {
           description="Seven visionary leaders driving Orbeetal's mission to engineer competitive advantages for businesses worldwide."
           className="mb-20"
         />
-        <TeamGrid />
+        <TeamGrid teamMembers={teamMembers} />
       </div>
     </section>
   );

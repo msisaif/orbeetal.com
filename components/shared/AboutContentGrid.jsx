@@ -5,9 +5,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { StatCard } from "@/components/ui/glass-card";
-import { stats, whyChooseUs } from "@/data/index.js";
-
-export function AboutContentGrid({ paragraphs = [], showCta = false }) {
+export function AboutContentGrid({ paragraphs = [], showCta = false, stats, whyChooseUs }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <MotionFadeIn x={-20} y={0} duration={0.7}>

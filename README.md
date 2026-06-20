@@ -30,10 +30,12 @@ Create `.env.local` in the project root:
 ```env
 BACKEND_API_URL=https://your-laravel-api.example.com
 ORBEETAL_SITE_SECRET=your-shared-secret
+CONTENT_SOURCE=static
 ```
 
 - `BACKEND_API_URL` — Laravel backend base URL (used by `/api/cv-submit` proxy)
 - `ORBEETAL_SITE_SECRET` — Shared secret sent as `X-Submit-Secret` header to the backend
+- `CONTENT_SOURCE` — Content adapter: `static` (default, reads `data/`) or `laravel` (future API)
 
 ## Site Configuration
 
@@ -67,12 +69,41 @@ components/
   event/          Shared event landing components
   ui/             Button, Card, Toast, form inputs
   icons/          SVG icon components
-data/             Static content (services, team, events, legal, navigation)
+data/             Static content source of truth (Git-managed)
   legal/          Terms, privacy, cookies content
-lib/              Utilities (cn, icons, schemas, validateData, siteFeatures)
+lib/
+  content/        Content repository layer (getServices, getTeamMembers, …)
+    adapters/     static.js (data/) | laravel.js (future API)
+  schemas.js      Zod schemas for content validation
+  siteFeatures.js Pure helpers for feature flags and banners
 hooks/            Custom React hooks
 e2e/              Playwright smoke tests
 ```
+
+## Content Layer
+
+UI components never import `@/data` directly. They call `lib/content/*` getters (e.g. `getServices()`, `getSiteConfig()`), which delegate to an adapter:
+
+- **`static`** (default) — reads from `data/` at build time (SSG intact)
+- **`laravel`** (future) — fetches from `BACKEND_API_URL/api/content/*`
+
+To swap to Laravel later, implement the endpoints below and set `CONTENT_SOURCE=laravel`.
+
+### Future Laravel content API
+
+| Next.js getter | Laravel endpoint |
+|----------------|------------------|
+| `getServices()` | `GET /api/content/services` |
+| `getServicesPageMeta()` | `GET /api/content/services/meta` |
+| `getDepartments()` | `GET /api/content/departments` |
+| `getTeamMembers()` | `GET /api/content/team` |
+| `getTeamMember(slug)` | `GET /api/content/team/{slug}` |
+| `getSiteConfig()` | `GET /api/content/site-config` |
+| `getIdeaContestContent()` | `GET /api/content/idea-contest` |
+| `getCvSubmitContent()` | `GET /api/content/cv-submit` |
+| `getLegalTerms()` | `GET /api/content/legal/terms` |
+
+Adapter contract is verified by `lib/content/adapters/parity.test.js`. No Laravel implementation is required until you set `CONTENT_SOURCE=laravel`.
 
 ## Data Validation
 

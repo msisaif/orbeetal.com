@@ -18,6 +18,21 @@ test("services page renders", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Strategic/i })).toBeVisible();
 });
 
+test("about page renders", async ({ page }) => {
+  await page.goto("/about");
+  await expect(page.getByRole("heading", { name: /Business Growth/i })).toBeVisible();
+});
+
+test("departments page renders", async ({ page }) => {
+  await page.goto("/departments");
+  await expect(page.getByRole("heading", { name: /Departments/i })).toBeVisible();
+});
+
+test("idea contest page renders when enabled", async ({ page }) => {
+  await page.goto("/idea-contest");
+  await expect(page.getByText("CONTEST", { exact: true })).toBeVisible();
+});
+
 test("legal pages render", async ({ page }) => {
   await page.goto("/terms");
   await expect(page.getByRole("heading", { name: /Terms of/i })).toBeVisible();
@@ -29,4 +44,21 @@ test("legal pages render", async ({ page }) => {
 test("team member page renders", async ({ page }) => {
   await page.goto("/team/md-saiful-islam");
   await expect(page.getByRole("heading", { name: /Md\. Saiful Islam/i })).toBeVisible();
+});
+
+test("skip link is focusable", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  const skipLink = page.locator('a[href="#main-content"]');
+  await expect(skipLink).toBeFocused();
+});
+
+test("mobile menu opens and closes", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 });
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Open menu" });
+  await toggle.click();
+  await expect(page.getByRole("dialog", { name: "Mobile navigation" })).toBeVisible();
+  await page.getByRole("button", { name: "Close menu" }).click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
 });

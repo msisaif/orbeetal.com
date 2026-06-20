@@ -1,15 +1,16 @@
 import { notFound } from "next/navigation";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { TeamMemberProfile } from "@/components/pages/team/TeamMemberProfile";
-import { teamMembers } from "@/data/team/index.js";
+import { getTeamMembers, getTeamMember } from "@/lib/content/team.js";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const teamMembers = await getTeamMembers();
   return teamMembers.map((m) => ({ slug: m.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const member = teamMembers.find((m) => m.slug === slug);
+  const member = await getTeamMember(slug);
   if (!member) return {};
   return {
     title: `${member.name} — Orbeetal`,
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }) {
 
 export default async function TeamMemberPage({ params }) {
   const { slug } = await params;
-  const member = teamMembers.find((m) => m.slug === slug);
+  const member = await getTeamMember(slug);
   if (!member) notFound();
 
   return (

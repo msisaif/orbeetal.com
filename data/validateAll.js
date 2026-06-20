@@ -18,6 +18,9 @@ import {
   eventSubmitItemSchema,
   eventCriteriaItemSchema,
   eventMetaSchema,
+  portfolioProjectSchema,
+  clientSchema,
+  processStepSchema,
 } from "@/lib/schemas";
 
 import { services, servicesPageMeta } from "./services.js";
@@ -124,13 +127,6 @@ validateData(eventInfoCardSchema.array(), cvSubmitInfoCards, "cvSubmitInfoCards"
 validateData(eventSubmitItemSchema.array(), cvSubmitSteps, "cvSubmitSteps");
 validateData(eventCriteriaItemSchema.array(), cvSubmitBenefits, "cvSubmitBenefits");
 
-// portfolio, clients, processSteps — lightweight checks
-if (!Array.isArray(portfolioProjects) || portfolioProjects.length === 0) {
-  throw new Error('Data validation failed for "portfolioProjects": must be non-empty array');
-}
-if (!Array.isArray(clients) || clients.length === 0) {
-  throw new Error('Data validation failed for "clients": must be non-empty array');
-}
-if (!Array.isArray(processSteps) || processSteps.length === 0) {
-  throw new Error('Data validation failed for "processSteps": must be non-empty array');
-}
+validateData(portfolioProjectSchema.array(), portfolioProjects, "portfolioProjects");
+validateData(clientSchema.array(), clients, "clients");
+validateData(processStepSchema.array(), processSteps, "processSteps");

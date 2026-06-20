@@ -7,15 +7,14 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { TopBanner } from "@/components/layout/TopBanner";
-import { navLinks } from "@/data/navigation.js";
-import { getEnabledEventNavLinks } from "@/lib/siteFeatures.js";
-
-const eventLinks = getEnabledEventNavLinks().map((link) => ({ ...link, highlight: true }));
-const allLinks = [...navLinks, ...eventLinks];
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function Navbar() {
+export function Navbar({ navLinks, eventLinks, banner }) {
+  const allLinks = [
+    ...navLinks,
+    ...eventLinks.map((link) => ({ ...link, highlight: true })),
+  ];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -67,7 +66,7 @@ export function Navbar() {
         isScrolled ? "bg-background/80 backdrop-blur-md border-white/5" : "bg-transparent"
       }`}
     >
-      <TopBanner />
+      <TopBanner banner={banner} />
       <div className={`container mx-auto px-6 md:px-12 flex items-center justify-between transition-all duration-300 ${isScrolled ? "py-4" : "py-6"}`}>
         <Link href="/" className="flex items-center gap-2 z-50">
           <Image src="/brand/logo.webp" alt="Orbeetal Logo" width={48} height={48} className="object-contain" />

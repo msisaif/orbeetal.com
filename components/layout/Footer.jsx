@@ -1,23 +1,18 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { BasisBadge } from "@/components/common/BasisBadge";
-import { navLinks } from "@/data/navigation.js";
-
 const legalLinks = [
   { name: "Privacy Policy",  route: "/privacy-policy" },
   { name: "Terms of Service", route: "/terms" },
   { name: "Cookie Policy",   route: "/cookies" },
 ];
 
-// footer navigation links upto 5
-const footerNavLinks = navLinks.slice(0, 3).map((item) => ({
-  name: item.name,
-  route: item.route,
-}));
+export function Footer({ navLinks }) {
+  const footerNavLinks = navLinks.slice(0, 3).map((item) => ({
+    name: item.name,
+    route: item.route,
+  }));
 
-export function Footer() {
   return (
     <footer className="bg-[#050B14] border-t border-white/5 py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />

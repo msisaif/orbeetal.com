@@ -1,19 +1,19 @@
 import { LegalPageLayout } from "@/components/pages/legal/LegalPageLayout";
-import {
-  cookiesPageMeta,
-  cookiesHero,
-  cookiesLastUpdated,
-  cookiesSections,
-} from "@/data/legal/index.js";
+import { getLegalCookies } from "@/lib/content/legal.js";
 
-export const metadata = cookiesPageMeta;
+export async function generateMetadata() {
+  const { pageMeta } = await getLegalCookies();
+  return pageMeta;
+}
 
-export default function CookiesPage() {
+export default async function CookiesPage() {
+  const { hero, lastUpdated, sections } = await getLegalCookies();
+
   return (
     <LegalPageLayout
-      hero={cookiesHero}
-      lastUpdated={cookiesLastUpdated}
-      sections={cookiesSections}
+      hero={hero}
+      lastUpdated={lastUpdated}
+      sections={sections}
     />
   );
 }

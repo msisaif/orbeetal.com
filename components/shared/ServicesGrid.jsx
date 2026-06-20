@@ -3,10 +3,9 @@
 import Image from "next/image";
 import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { GlassCard } from "@/components/ui/glass-card";
-import { services } from "@/data/index.js";
 import { resolveIcon } from "@/lib/icons";
 
-export function ServicesGrid() {
+export function ServicesGrid({ services }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {services.map((service, i) => {

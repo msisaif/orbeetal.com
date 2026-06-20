@@ -5,16 +5,19 @@ import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AboutBackground } from "@/components/shared/AboutBackground";
 import { AboutContentGrid } from "@/components/shared/AboutContentGrid";
-import { aboutIntro, aboutPageExtra, mission, vision } from "@/data/index.js";
-
-export function AboutPageContent() {
+export function AboutPageContent({ aboutIntro, aboutPageExtra, mission, vision, stats, whyChooseUs }) {
   return (
     <>
       <section className="py-20 md:py-28 relative overflow-hidden">
         <AboutBackground opacity={15} />
 
         <div className="container mx-auto px-6 md:px-12 relative z-30">
-          <AboutContentGrid paragraphs={[aboutIntro, aboutPageExtra]} showCta />
+          <AboutContentGrid
+            paragraphs={[aboutIntro, aboutPageExtra]}
+            showCta
+            stats={stats}
+            whyChooseUs={whyChooseUs}
+          />
         </div>
       </section>
 

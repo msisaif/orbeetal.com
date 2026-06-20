@@ -3,11 +3,9 @@
 import { createElement } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { resolveTopBanner } from "@/lib/siteFeatures.js";
 import { resolveIcon } from "@/lib/icons";
 
-export function TopBanner() {
-  const banner = resolveTopBanner();
+export function TopBanner({ banner }) {
   if (!banner) return null;
 
   const { content, iconName } = banner;

@@ -1,9 +1,10 @@
-"use client";
-
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { ContactInfoPanel } from "@/components/shared/ContactInfoPanel";
+import { getContactInfo } from "@/lib/content/contact.js";
 
-export function Contact() {
+export async function Contact() {
+  const contactInfo = await getContactInfo();
+
   return (
     <section id="contact" className="py-24 md:py-32 relative z-20 border-t border-white/5 overflow-hidden">
       <div className="absolute inset-0 bg-primary/5" />
@@ -17,7 +18,7 @@ export function Contact() {
           description="Reach out and let&apos;s start building something exceptional together."
           className="mb-16"
         />
-        <ContactInfoPanel />
+        <ContactInfoPanel contactInfo={contactInfo} />
       </div>
     </section>
   );

@@ -6,7 +6,6 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CallToAction } from "@/components/common/CallToAction";
 import { ServicesGrid } from "@/components/shared/ServicesGrid";
-import { processSteps } from "@/data/index.js";
 
 const highlights = [
   "Scalable, secure architectures built to last",
@@ -15,12 +14,12 @@ const highlights = [
   "Full-stack teams — strategy through deployment",
 ];
 
-export function ServicesPageContent() {
+export function ServicesPageContent({ services, processSteps }) {
   return (
     <>
       <section className="py-20 md:py-28 relative z-20">
         <div className="container mx-auto px-6 md:px-12">
-          <ServicesGrid />
+          <ServicesGrid services={services} />
         </div>
       </section>
 

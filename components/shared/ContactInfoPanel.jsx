@@ -4,9 +4,7 @@ import { Mail, Phone } from "lucide-react";
 import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { GlassCard } from "@/components/ui/glass-card";
 import { FacebookIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
-import { contactInfo } from "@/data/index.js";
-
-export function ContactInfoPanel() {
+export function ContactInfoPanel({ contactInfo }) {
   return (
     <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
       <MotionFadeIn x={-20} y={0}>

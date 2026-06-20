@@ -12,24 +12,28 @@ import { About } from "@/components/home/About";
 import { Process } from "@/components/home/Process";
 import { Contact } from "@/components/home/Contact";
 import { BasisBadge } from "@/components/common/BasisBadge";
+import { getSiteConfig } from "@/lib/content/siteConfig.js";
 import { resolveActiveHero } from "@/lib/siteFeatures.js";
+import { getClients } from "@/lib/content/clients.js";
 
 const heroComponents = {
-  hero: <Hero />,
-  "idea-contest": <IdeaContest />,
-  "cv-submit": <CvSubmit />,
+  hero: Hero,
+  "idea-contest": IdeaContest,
+  "cv-submit": CvSubmit,
 };
 
-export default function Home() {
-  const heroKey = resolveActiveHero();
+export default async function Home() {
+  const [siteConfig, clients] = await Promise.all([getSiteConfig(), getClients()]);
+  const heroKey = resolveActiveHero(siteConfig);
+  const HeroComponent = heroComponents[heroKey] ?? Hero;
 
   return (
     <PageLayout>
-      {heroComponents[heroKey] ?? <Hero />}
+      <HeroComponent />
       <div className="py-8 flex justify-center border-b border-white/5 bg-white/1 border-t">
         <BasisBadge />
       </div>
-      <ClientsBar />
+      <ClientsBar clients={clients} />
       <Services />
       <Departments />
       <Portfolio />

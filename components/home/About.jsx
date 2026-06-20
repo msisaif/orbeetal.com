@@ -1,11 +1,11 @@
-"use client";
-
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { AboutBackground } from "@/components/shared/AboutBackground";
 import { AboutContentGrid } from "@/components/shared/AboutContentGrid";
-import { aboutIntro } from "@/data/index.js";
+import { getAboutContent } from "@/lib/content/about.js";
 
-export function About() {
+export async function About() {
+  const { aboutIntro, stats, whyChooseUs } = await getAboutContent();
+
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden border-t border-white/5">
       <AboutBackground opacity={20} />
@@ -19,7 +19,7 @@ export function About() {
           animated={false}
           className="mb-6"
         />
-        <AboutContentGrid paragraphs={[aboutIntro]} />
+        <AboutContentGrid paragraphs={[aboutIntro]} stats={stats} whyChooseUs={whyChooseUs} />
       </div>
     </section>
   );

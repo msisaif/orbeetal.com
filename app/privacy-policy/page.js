@@ -1,19 +1,19 @@
 import { LegalPageLayout } from "@/components/pages/legal/LegalPageLayout";
-import {
-  privacyPageMeta,
-  privacyHero,
-  privacyLastUpdated,
-  privacySections,
-} from "@/data/legal/index.js";
+import { getLegalPrivacy } from "@/lib/content/legal.js";
 
-export const metadata = privacyPageMeta;
+export async function generateMetadata() {
+  const { pageMeta } = await getLegalPrivacy();
+  return pageMeta;
+}
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const { hero, lastUpdated, sections } = await getLegalPrivacy();
+
   return (
     <LegalPageLayout
-      hero={privacyHero}
-      lastUpdated={privacyLastUpdated}
-      sections={privacySections}
+      hero={hero}
+      lastUpdated={lastUpdated}
+      sections={sections}
     />
   );
 }

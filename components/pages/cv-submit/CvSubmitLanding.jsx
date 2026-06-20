@@ -8,14 +8,8 @@ import { CvSubmitForm } from "@/components/pages/cv-submit/CvSubmitForm";
 import { EventInfoCardGrid } from "@/components/event/EventInfoCardGrid";
 import { EventStepsList } from "@/components/event/EventStepsList";
 import { EventCriteriaList } from "@/components/event/EventCriteriaList";
-import {
-  cvSubmitMeta,
-  cvSubmitInfoCards,
-  cvSubmitSteps,
-  cvSubmitBenefits,
-} from "@/data/index.js";
-
-export function CvSubmitLanding() {
+export function CvSubmitLanding({ content, ruetDepartments }) {
+  const { meta, infoCards, steps, benefits } = content;
   return (
     <main className="bg-background text-foreground pt-12">
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-white/5 pt-24 pb-16">
@@ -32,7 +26,7 @@ export function CvSubmitLanding() {
             transition={{ duration: 0.5 }}
             className="text-primary text-sm font-medium uppercase tracking-widest mb-6"
           >
-            {cvSubmitMeta.organizer} · {cvSubmitMeta.edition} Edition
+            {meta.organizer} · {meta.edition} Edition
           </motion.p>
 
           <motion.div
@@ -64,8 +58,8 @@ export function CvSubmitLanding() {
             className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
           >
             Submit your CV and connect with top recruiters at{" "}
-            {cvSubmitMeta.venue} on{" "}
-            <strong className="text-white">{cvSubmitMeta.eventDate}</strong>.
+            {meta.venue} on{" "}
+            <strong className="text-white">{meta.eventDate}</strong>.
           </motion.p>
 
           <motion.div
@@ -97,13 +91,13 @@ export function CvSubmitLanding() {
         </div>
       </section>
 
-      <EventInfoCardGrid cards={cvSubmitInfoCards} />
+      <EventInfoCardGrid cards={infoCards} />
 
       <EventStepsList
         tagline="Process"
         title="How to"
         titleHighlight="Submit?"
-        items={cvSubmitSteps}
+        items={steps}
         accent="primary"
         showStepNumber
       />
@@ -112,10 +106,10 @@ export function CvSubmitLanding() {
         tagline="Benefits"
         title="Why"
         titleHighlight="Attend?"
-        items={cvSubmitBenefits}
+        items={benefits}
       />
 
-      <CvSubmitForm />
+      <CvSubmitForm ruetDepartments={ruetDepartments} />
 
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -151,8 +145,8 @@ export function CvSubmitLanding() {
             className="text-white/60 text-lg max-w-xl mx-auto mb-10"
           >
             Meet top recruiters at{" "}
-            <strong className="text-white">{cvSubmitMeta.venue}</strong> on{" "}
-            <strong className="text-white">{cvSubmitMeta.eventDate}</strong>.
+            <strong className="text-white">{meta.venue}</strong> on{" "}
+            <strong className="text-white">{meta.eventDate}</strong>.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

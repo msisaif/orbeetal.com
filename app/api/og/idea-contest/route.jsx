@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
-import { ideaContestMeta } from "@/data/ideaContest.js";
+import { getIdeaContestMeta } from "@/lib/content/events.js";
 import { W, H, BLUE, AMBER, loadFonts, Shell, InfoItem, BrandRow } from "../_shared";
 
 export const runtime = "edge";
 
-function IdeaContestCard() {
+function IdeaContestCard({ meta }) {
   return (
     <Shell accentColor={AMBER} secondaryGlow={BLUE} barColors={[AMBER, "#f97316"]}>
       <BrandRow subtitle="Idea Contest 2026" />
@@ -25,14 +25,15 @@ function IdeaContestCard() {
       </div>
       <div style={{ display: "flex", gap: 12, alignItems: "stretch", width: "100%" }}>
         <InfoItem label="Idea Submit" value="Open Now" accentColor={AMBER} />
-        <InfoItem label="Prize Pool" value={ideaContestMeta.prize.replace("৳", "BDT ")} highlight accentColor={AMBER} />
-        <InfoItem label="Deadline" value={ideaContestMeta.deadline} accentColor={AMBER} />
+        <InfoItem label="Prize Pool" value={meta.prize.replace("৳", "BDT ")} highlight accentColor={AMBER} />
+        <InfoItem label="Deadline" value={meta.deadline} accentColor={AMBER} />
       </div>
     </Shell>
   );
 }
 
 export async function GET() {
+  const meta = await getIdeaContestMeta();
   const fonts = await loadFonts();
-  return new ImageResponse(<IdeaContestCard />, { width: W, height: H, fonts });
+  return new ImageResponse(<IdeaContestCard meta={meta} />, { width: W, height: H, fonts });
 }

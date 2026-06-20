@@ -2,10 +2,9 @@
 
 import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { GlassCard } from "@/components/ui/glass-card";
-import { departments } from "@/data/index.js";
 import { resolveIcon } from "@/lib/icons";
 
-export function DepartmentsGrid() {
+export function DepartmentsGrid({ departments }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       {departments.map((dept, i) => {

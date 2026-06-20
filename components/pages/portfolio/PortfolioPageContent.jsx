@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ClientsBar } from "@/components/shared/ClientsBar";
-import { portfolioProjects } from "@/data/index.js";
-
-export function PortfolioPageContent() {
+export function PortfolioPageContent({ portfolioProjects, clients }) {
   return (
     <>
       {/* Portfolio Grid */}
@@ -39,6 +37,7 @@ export function PortfolioPageContent() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} in new tab`}
                       className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -67,7 +66,7 @@ export function PortfolioPageContent() {
         </div>
       </section>
 
-      <ClientsBar />
+      <ClientsBar clients={clients} />
 
       {/* CTA */}
       <section className="py-20 border-t border-white/5 relative z-20 overflow-hidden">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
@@ -14,7 +14,6 @@ import { FieldLabel } from "@/components/ui/field-label";
 import { FieldError } from "@/components/ui/field-error";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { ruetDepartments } from "@/data/universities/ruet.js";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -36,10 +35,6 @@ const UNIVERSITIES = [
   { value: "ruet", label: "Rajshahi University of Engineering & Technology (RUET)" },
 ];
 
-const UNIVERSITY_DEPARTMENTS = {
-  ruet: ruetDepartments,
-};
-
 const NOTE_SUGGESTIONS = [
   "Full Stack Development",
   "Android Development",
@@ -57,7 +52,8 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, delay },
 });
 
-export function CvSubmitForm() {
+export function CvSubmitForm({ ruetDepartments }) {
+  const universityDepartments = { ruet: ruetDepartments };
   const { toast } = useToast();
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [fileName, setFileName] = useState("");
@@ -67,11 +63,11 @@ export function CvSubmitForm() {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(schema) });
 
-  const noteValue = watch("note") || "";
+  const noteValue = useWatch({ control, name: "note" }) || "";
 
   function appendSuggestion(suggestion) {
     const current = noteValue.trim();
@@ -173,7 +169,7 @@ export function CvSubmitForm() {
               {...register("department_code")}
             >
               <option value="">Select department</option>
-              {(UNIVERSITY_DEPARTMENTS[selectedUniversity] || []).map((d) => (
+              {(universityDepartments[selectedUniversity] || []).map((d) => (
                 <option key={d.code} value={d.code}>
                   {d.shortName} — {d.name}
                 </option>

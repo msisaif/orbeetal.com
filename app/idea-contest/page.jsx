@@ -1,15 +1,21 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { IdeaContestLanding } from "@/components/pages/idea-contest/IdeaContestLanding";
-import { ideaContestPageMeta } from "@/data/ideaContest.js";
+import { getIdeaContestPageMeta, getIdeaContestContent } from "@/lib/content/events.js";
+import { getSiteConfig } from "@/lib/content/siteConfig.js";
 import { isIdeaContestEnabled } from "@/lib/siteFeatures.js";
 
-export const metadata = ideaContestPageMeta;
+export async function generateMetadata() {
+  return getIdeaContestPageMeta();
+}
 
-export default function IdeaContestPage() {
-  if (isIdeaContestEnabled()) {
+export default async function IdeaContestPage() {
+  const siteConfig = await getSiteConfig();
+
+  if (isIdeaContestEnabled(siteConfig)) {
+    const content = await getIdeaContestContent();
     return (
       <PageLayout>
-        <IdeaContestLanding />
+        <IdeaContestLanding content={content} />
       </PageLayout>
     );
   }

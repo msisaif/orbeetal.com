@@ -7,14 +7,8 @@ import { Button } from "@/components/ui/button";
 import { EventInfoCardGrid } from "@/components/event/EventInfoCardGrid";
 import { EventStepsList } from "@/components/event/EventStepsList";
 import { EventCriteriaList } from "@/components/event/EventCriteriaList";
-import {
-  ideaContestMeta,
-  ideaContestInfoCards,
-  ideaContestSubmitItems,
-  ideaContestCriteria,
-} from "@/data/index.js";
-
-export function IdeaContestLanding() {
+export function IdeaContestLanding({ content }) {
+  const { meta, infoCards, submitItems, criteria } = content;
   return (
     <main className="bg-background text-foreground pt-12">
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden border-b border-white/5 pt-24 pb-16">
@@ -31,7 +25,7 @@ export function IdeaContestLanding() {
             transition={{ duration: 0.5 }}
             className="text-amber-400 text-sm font-medium uppercase tracking-widest mb-6"
           >
-            {ideaContestMeta.organizer} Presents
+            {meta.organizer} Presents
           </motion.p>
 
           <motion.div
@@ -76,7 +70,7 @@ export function IdeaContestLanding() {
             <span className="text-amber-400 font-display font-semibold text-base">Prize Pool</span>
             <span className="w-px h-5 bg-white/20" />
             <span className="text-white font-display font-bold text-2xl">
-              {ideaContestMeta.prize}
+              {meta.prize}
             </span>
           </motion.div>
 
@@ -91,7 +85,7 @@ export function IdeaContestLanding() {
               size="lg"
               className="bg-amber-500 hover:bg-amber-400 text-black font-semibold border-none rounded-sm h-14 px-10 text-base shadow-[0_0_50px_-10px_rgba(245,158,11,0.7)]"
             >
-              <a href={ideaContestMeta.submitFormUrl} target="_blank" rel="noopener noreferrer">
+              <a href={meta.submitFormUrl} target="_blank" rel="noopener noreferrer">
                 Submit IDEA
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -110,13 +104,13 @@ export function IdeaContestLanding() {
         </div>
       </section>
 
-      <EventInfoCardGrid cards={ideaContestInfoCards} />
+      <EventInfoCardGrid cards={infoCards} />
 
       <EventStepsList
         tagline="Submission Guidelines"
         title="What to"
         titleHighlight="Submit?"
-        items={ideaContestSubmitItems}
+        items={submitItems}
         accent="amber"
       />
 
@@ -124,7 +118,7 @@ export function IdeaContestLanding() {
         tagline="Judging"
         title="Evaluation"
         titleHighlight="Criteria"
-        items={ideaContestCriteria}
+        items={criteria}
       />
 
       <section className="py-24 border-b border-white/5">
@@ -201,9 +195,9 @@ export function IdeaContestLanding() {
             className="text-white/60 text-lg max-w-xl mx-auto mb-10"
           >
             Don&apos;t wait. Submit your idea before{" "}
-            <strong className="text-white">{ideaContestMeta.deadline}</strong> and showcase it at
+            <strong className="text-white">{meta.deadline}</strong> and showcase it at
             the RCF Career Fair on{" "}
-            <strong className="text-white">{ideaContestMeta.eventDate}</strong>.
+            <strong className="text-white">{meta.eventDate}</strong>.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -216,7 +210,7 @@ export function IdeaContestLanding() {
               size="lg"
               className="bg-amber-500 hover:bg-amber-400 text-black font-semibold border-none rounded-sm h-16 px-12 text-lg shadow-[0_0_60px_-10px_rgba(245,158,11,0.7)]"
             >
-              <a href={ideaContestMeta.submitFormUrl} target="_blank" rel="noopener noreferrer">
+              <a href={meta.submitFormUrl} target="_blank" rel="noopener noreferrer">
                 Submit IDEA
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>

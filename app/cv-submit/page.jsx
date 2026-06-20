@@ -1,15 +1,25 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { CvSubmitLanding } from "@/components/pages/cv-submit/CvSubmitLanding";
-import { cvSubmitPageMeta } from "@/data/cvSubmit.js";
+import { getCvSubmitPageMeta, getCvSubmitContent } from "@/lib/content/events.js";
+import { getRuetDepartments } from "@/lib/content/universities.js";
+import { getSiteConfig } from "@/lib/content/siteConfig.js";
 import { isCvSubmitEnabled } from "@/lib/siteFeatures.js";
 
-export const metadata = cvSubmitPageMeta;
+export async function generateMetadata() {
+  return getCvSubmitPageMeta();
+}
 
-export default function CvSubmitPage() {
-  if (isCvSubmitEnabled()) {
+export default async function CvSubmitPage() {
+  const siteConfig = await getSiteConfig();
+
+  if (isCvSubmitEnabled(siteConfig)) {
+    const [content, ruetDepartments] = await Promise.all([
+      getCvSubmitContent(),
+      getRuetDepartments(),
+    ]);
     return (
       <PageLayout>
-        <CvSubmitLanding />
+        <CvSubmitLanding content={content} ruetDepartments={ruetDepartments} />
       </PageLayout>
     );
   }

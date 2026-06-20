@@ -1,10 +1,11 @@
-"use client";
-
 import { Section } from "@/components/common/Section";
 import { SectionHeader } from "@/components/common/SectionHeader";
 import { DepartmentsGrid } from "@/components/shared/DepartmentsGrid";
+import { getDepartments } from "@/lib/content/departments.js";
 
-export function Departments() {
+export async function Departments() {
+  const departments = await getDepartments();
+
   return (
     <Section
       id="departments"
@@ -19,7 +20,7 @@ export function Departments() {
           description="Seven specialized departments working in unison to deliver excellence across every dimension of your project."
           className="mb-20"
         />
-        <DepartmentsGrid />
+        <DepartmentsGrid departments={departments} />
       </div>
     </Section>
   );

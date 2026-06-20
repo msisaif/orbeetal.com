@@ -4,9 +4,7 @@ import Link from "next/link";
 import { User } from "lucide-react";
 import { MotionFadeIn } from "@/components/common/MotionFadeIn";
 import { GlassCard } from "@/components/ui/glass-card";
-import { teamMembers } from "@/data/index.js";
-
-export function TeamGrid() {
+export function TeamGrid({ teamMembers }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {teamMembers.map((member, i) => {

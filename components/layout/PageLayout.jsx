@@ -1,8 +1,28 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
+import { getNavLinks } from "@/lib/content/navigation.js";
+import {
+  getSiteConfig,
+  getIdeaContestBannerContent,
+  getCvSubmitBannerContent,
+} from "@/lib/content/siteConfig.js";
+import { getEnabledEventNavLinks, resolveTopBanner } from "@/lib/siteFeatures.js";
 
-export function PageLayout({ children, className }) {
+export async function PageLayout({ children, className }) {
+  const [navLinks, siteConfig, ideaContestBanner, cvSubmitBanner] = await Promise.all([
+    getNavLinks(),
+    getSiteConfig(),
+    getIdeaContestBannerContent(),
+    getCvSubmitBannerContent(),
+  ]);
+
+  const eventLinks = getEnabledEventNavLinks(siteConfig);
+  const banner = resolveTopBanner(siteConfig, {
+    ideaContest: ideaContestBanner,
+    cvSubmit: cvSubmitBanner,
+  });
+
   return (
     <div
       className={cn(
@@ -16,9 +36,9 @@ export function PageLayout({ children, className }) {
       >
         Skip to main content
       </a>
-      <Navbar />
+      <Navbar navLinks={navLinks} eventLinks={eventLinks} banner={banner} />
       <main id="main-content">{children}</main>
-      <Footer />
+      <Footer navLinks={navLinks} />
     </div>
   );
 }

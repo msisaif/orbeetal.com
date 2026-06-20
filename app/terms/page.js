@@ -1,14 +1,19 @@
 import { LegalPageLayout } from "@/components/pages/legal/LegalPageLayout";
-import { termsPageMeta, termsHero, termsLastUpdated, termsSections } from "@/data/legal/index.js";
+import { getLegalTerms } from "@/lib/content/legal.js";
 
-export const metadata = termsPageMeta;
+export async function generateMetadata() {
+  const { pageMeta } = await getLegalTerms();
+  return pageMeta;
+}
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const { hero, lastUpdated, sections } = await getLegalTerms();
+
   return (
     <LegalPageLayout
-      hero={termsHero}
-      lastUpdated={termsLastUpdated}
-      sections={termsSections}
+      hero={hero}
+      lastUpdated={lastUpdated}
+      sections={sections}
     />
   );
 }

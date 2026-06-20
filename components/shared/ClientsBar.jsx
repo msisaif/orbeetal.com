@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { clients } from "@/data/index.js";
-
-export function ClientsBar() {
+export function ClientsBar({ clients }) {
   return (
     <section className="py-12 border-y border-white/5 bg-white/[0.02] relative z-20">
       <div className="container mx-auto px-6 md:px-12">
