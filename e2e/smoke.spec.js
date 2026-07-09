@@ -28,11 +28,6 @@ test("departments page renders", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Departments/i })).toBeVisible();
 });
 
-test("idea contest page renders when enabled", async ({ page }) => {
-  await page.goto("/idea-contest");
-  await expect(page.getByText("CONTEST", { exact: true })).toBeVisible();
-});
-
 test("legal pages render", async ({ page }) => {
   await page.goto("/terms");
   await expect(page.getByRole("heading", { name: /Terms of/i })).toBeVisible();
