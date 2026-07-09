@@ -1,7 +1,7 @@
 // ─── Feature flags ────────────────────────────────────────────────────────────
 // Controls nav links and dedicated page content (/idea-contest, /cv-submit)
 export const features = {
-  ideaContest: false,
+  ideaContest: true,
   cvSubmit: true,
 };
 

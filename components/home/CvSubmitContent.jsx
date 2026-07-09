@@ -60,22 +60,14 @@ export function CvSubmitContent({ meta, stats }) {
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              {meta.submitFormUrl && (
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-primary/30 hover:bg-primary/5 text-white h-14 px-8 text-base"
-                >
-                  <a
-                    href={meta.submitFormUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Submit CV
-                  </a>
-                </Button>
-              )}
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-primary/30 hover:bg-primary/5 text-white h-14 px-8 text-base"
+              >
+                <Link href="/cv-submit#cv-form">Submit CV</Link>
+              </Button>
             </m.div>
           </div>
 
