@@ -1,6 +1,6 @@
 // ─── Single source of truth — edit here to update everywhere ─────────────────
 export const cvSubmitMeta = {
-  submitFormUrl: "https://form.jotform.com/orbeetalcom/cv-submit--2026",  // JotForm link এখানে দিন
+  submitFormUrl: "https://orbeetal.com/cv-submit",  // JotForm link এখানে দিন
   eventDate: "10–11 July, 2026",
   deadline: "",       // CV submission deadline এখানে দিন
   organizer: "RUET Career Forum",
