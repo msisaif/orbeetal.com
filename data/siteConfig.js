@@ -1,7 +1,7 @@
 // ─── Feature flags ────────────────────────────────────────────────────────────
 // Controls nav links and dedicated page content (/idea-contest, /cv-submit)
 export const features = {
-  ideaContest: true,
+  ideaContest: false,
   cvSubmit: true,
 };
 
@@ -13,7 +13,7 @@ export const features = {
 //   "cv-submit"    — CvSubmitHero (CV Submit promotional section)
 //
 // If the selected hero's feature is disabled, falls back to DefaultHero.
-export const activeHero = "idea-contest";
+export const activeHero = "cv-submit";
 
 // ─── Top announcement banner ──────────────────────────────────────────────────
 // Options:
@@ -21,7 +21,7 @@ export const activeHero = "idea-contest";
 //   "idea-contest" — Idea Contest banner (from ideaContest.js)
 //   "cv-submit"    — CV Submit banner (from cvSubmit.js)
 //   "custom"       — custom banner (from customBannerContent below)
-export const activeTopBanner = "idea-contest";
+export const activeTopBanner = "cv-submit";
 
 // Used only when activeTopBanner === "custom"
 export const customBannerContent = {
